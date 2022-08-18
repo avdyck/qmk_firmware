@@ -6,11 +6,13 @@ LTO_ENABLE = yes
 # minimal size
 CONSOLE_ENABLE = no
 COMMAND_ENABLE = no
-EXTRAKEY_ENABLE = no
-DYNAMIC_MACRO_ENABLE = no
 SPACE_CADET_ENABLE = no
 GRAVE_ESC_ENABLE = no
 MAGIC_ENABLE = no
+
+# media keys & macros
+EXTRAKEY_ENABLE = yes
+DYNAMIC_MACRO_ENABLE = yes
 
 # combos
 COMBO_ENABLE = yes
