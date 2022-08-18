@@ -9,9 +9,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
     KC_DELETE,         KC_4,              KC_0,               KC_1,               KC_2,               KC_3,              LALT(KC_F4),                     KC_TRANSPARENT,    KC_7,              KC_6,              KC_5,              KC_9,              KC_8,                   KC_TRANSPARENT,
     KC_TAB,            KC_Q,              KC_W,               KC_E,               KC_R,               KC_T,              LCTL(KC_INSERT),                 TG(5),             KC_Y,              KC_U,              KC_I,              KC_O,              KC_P,                   KC_BSPACE,
-    KC_ESCAPE,         MT(MOD_LGUI, KC_A),MT(MOD_LCTL, KC_S), MT(MOD_LALT, KC_D), MT(MOD_LSFT, KC_F), KC_G,              LSFT(KC_INSERT),                 KC_INSERT,         KC_H,              MT(MOD_RSFT, KC_J),MT(MOD_RALT, KC_K),MT(MOD_RCTL, KC_L),MT(MOD_RGUI, KC_SCOLON),KC_ENTER,
+    KC_ESCAPE,         KC_A,              KC_S,               KC_D,               KC_F,               KC_G,              LSFT(KC_INSERT),                 KC_INSERT,         KC_H,              KC_J,              KC_K,              KC_L,              KC_SCOLON,              KC_ENTER,
     KC_LSHIFT,         KC_Z,              KC_X,               KC_C,               KC_V,               KC_B,                                                                  KC_N,              KC_M,              KC_COMMA,          KC_DOT,            KC_SLASH,               KC_TRANSPARENT,
-    KC_TRANSPARENT,    KC_TRANSPARENT,    KC_TRANSPARENT,     MO(4),              MO(1),              KC_PSCREEN,                                                            TG(1),             MO(2),             MO(3),             KC_TRANSPARENT,    KC_TRANSPARENT,         KC_TRANSPARENT,
+    KC_LCTL,           KC_LGUI,           KC_LALT,            MO(4),              MO(1),              KC_PSCREEN,                                                            TG(1),             MO(2),             MO(3),             KC_RALT,           KC_RGUI,                KC_RCTL,
                                                                                   KC_TAB,             KC_TRANSPARENT,    KC_TRANSPARENT,                  KC_TRANSPARENT,    KC_TRANSPARENT,    KC_SPACE
   ),
   [1] = LAYOUT_moonlander(
@@ -70,7 +70,6 @@ void keyboard_post_init_user(void) {
   rgb_matrix_enable();
 }
 
-// TODO
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
  [0] = { {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,255}, {141,255,233}, {141,255,233}, {141,255,233}, {0,0,0}, {0,0,255}, {141,255,233}, {141,255,233}, {141,255,233}, {0,0,0}, {0,0,255}, {141,255,233}, {141,255,233}, {141,255,233}, {0,0,255}, {0,0,255}, {141,255,233}, {141,255,233}, {141,255,233}, {85,203,158}, {0,0,255}, {141,255,233}, {141,255,233}, {141,255,233}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,0}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,255}, {141,255,233}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,255}, {141,255,233}, {141,255,233}, {0,0,255}, {0,0,0}, {0,0,255}, {141,255,233}, {141,255,233}, {0,0,255}, {0,0,255}, {0,0,255}, {141,255,233}, {141,255,233}, {141,255,233}, {0,0,255}, {0,0,255}, {141,255,233}, {141,255,233}, {141,255,233}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,255}, {0,0,0}, {0,0,0}, {0,0,255} }, [1] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {85,203,158}, {0,0,0}, {0,0,0}, {0,0,0}, {85,203,158}, {85,203,158}, {85,203,158}, {0,0,0}, {0,0,0}, {85,203,158}, {85,203,158}, {0,0,0}, {0,0,0}, {0,0,0}, {85,203,158}, {85,203,158}, {0,0,0}, {0,0,0}, {0,0,0}, {85,203,158}, {85,203,158}, {85,203,158}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {85,203,158}, {0,0,0}, {0,0,0}, {0,0,0}, {85,203,158}, {85,203,158}, {85,203,158}, {0,0,0}, {0,0,0}, {85,203,158}, {85,203,158}, {85,203,158}, {0,0,0}, {0,0,0}, {85,203,158}, {85,203,158}, {85,203,158}, {0,0,0}, {0,0,0}, {85,203,158}, {85,203,158}, {85,203,158}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
 
@@ -105,32 +104,11 @@ void set_layer_color(int layer) {
 
 void rgb_matrix_indicators_user(void) {
   if (keyboard_config.disable_layer_led) { return; }
-  switch (biton32(layer_state)) {
-    case 0:
-      set_layer_color(0);
-      break;
-    case 1:
-      set_layer_color(1);
-      break;
-    case 2:
-      set_layer_color(2);
-      break;
-    case 3:
-      set_layer_color(3);
-      break;
-    case 4:
-      set_layer_color(4);
-      break;
-    case 5:
-      set_layer_color(5);
-      break;
-    case 6:
-      set_layer_color(6);
-      break;
-   default:
-    if (rgb_matrix_get_flags() == LED_FLAG_NONE)
-      rgb_matrix_set_color_all(0, 0, 0);
-    break;
+  int lay = biton32(layer_state);
+  if (lay < 7) {
+    set_layer_color(lay);
+  } else if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
+    rgb_matrix_set_color_all(0, 0, 0);
   }
 }
 
@@ -145,4 +123,106 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
+// define combo names
+enum combos {
+    COMBO_LSFT,
+    COMBO_LALT,
+    COMBO_LCTL,
+    COMBO_LGUI,
+    COMBO_LSFTALT,
+    COMBO_LSFTCTL,
+    COMBO_LSFTGUI,
+    COMBO_LALTCTL,
+    COMBO_LALTGUI,
+    COMBO_LCTLGUI,
+    COMBO_LSFTALTCTL,
+    COMBO_LSFTALTGUI,
+    COMBO_LSFTCTLGUI,
+    COMBO_LSFTALTCTLGUI,
 
+    COMBO_RSFT,
+    COMBO_RALT,
+    COMBO_RCTL,
+    COMBO_RGUI,
+    COMBO_RSFTALT,
+    COMBO_RSFTCTL,
+    COMBO_RSFTGUI,
+    COMBO_RALTCTL,
+    COMBO_RALTGUI,
+    COMBO_RCTLGUI,
+    COMBO_RSFTALTCTL,
+    COMBO_RSFTALTGUI,
+    COMBO_RSFTCTLGUI,
+    COMBO_RSFTALTCTLGUI,
+
+    COMBO_LENGTH // nifty trick to avoid manually specifying how many combos you have
+};
+
+uint16_t COMBO_LEN = COMBO_LENGTH; // nifty trick continued
+
+// define keys that make up combos
+const uint16_t PROGMEM f_combo[]    = {KC_TAB,   KC_F, COMBO_END};
+const uint16_t PROGMEM d_combo[]    = {KC_TAB,   KC_D, COMBO_END};
+const uint16_t PROGMEM s_combo[]    = {KC_TAB,   KC_S, COMBO_END};
+const uint16_t PROGMEM a_combo[]    = {KC_TAB,   KC_A, COMBO_END};
+const uint16_t PROGMEM fd_combo[]   = {KC_TAB,   KC_F, KC_D, COMBO_END};
+const uint16_t PROGMEM fs_combo[]   = {KC_TAB,   KC_F, KC_S, COMBO_END};
+const uint16_t PROGMEM fa_combo[]   = {KC_TAB,   KC_F, KC_A, COMBO_END};
+const uint16_t PROGMEM ds_combo[]   = {KC_TAB,   KC_D, KC_S, COMBO_END};
+const uint16_t PROGMEM da_combo[]   = {KC_TAB,   KC_D, KC_A, COMBO_END};
+const uint16_t PROGMEM sa_combo[]   = {KC_TAB,   KC_S, KC_A, COMBO_END};
+const uint16_t PROGMEM fds_combo[]  = {KC_TAB,   KC_F, KC_D, KC_S, COMBO_END};
+const uint16_t PROGMEM fda_combo[]  = {KC_TAB,   KC_F, KC_D, KC_A, COMBO_END};
+const uint16_t PROGMEM dsa_combo[]  = {KC_TAB,   KC_D, KC_S, KC_A, COMBO_END};
+const uint16_t PROGMEM fdsa_combo[] = {KC_TAB,   KC_F, KC_D, KC_S, KC_A, COMBO_END};
+
+const uint16_t PROGMEM j_combo[]    = {KC_SPACE, KC_J, COMBO_END};
+const uint16_t PROGMEM k_combo[]    = {KC_SPACE, KC_K, COMBO_END};
+const uint16_t PROGMEM l_combo[]    = {KC_SPACE, KC_L, COMBO_END};
+const uint16_t PROGMEM m_combo[]    = {KC_SPACE, KC_SCOLON, COMBO_END};
+const uint16_t PROGMEM jk_combo[]   = {KC_SPACE, KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM jl_combo[]   = {KC_SPACE, KC_J, KC_L, COMBO_END};
+const uint16_t PROGMEM jm_combo[]   = {KC_SPACE, KC_J, KC_SCOLON, COMBO_END};
+const uint16_t PROGMEM kl_combo[]   = {KC_SPACE, KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM km_combo[]   = {KC_SPACE, KC_K, KC_SCOLON, COMBO_END};
+const uint16_t PROGMEM lm_combo[]   = {KC_SPACE, KC_L, KC_SCOLON, COMBO_END};
+const uint16_t PROGMEM jkl_combo[]  = {KC_SPACE, KC_J, KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM jkm_combo[]  = {KC_SPACE, KC_J, KC_K, KC_SCOLON, COMBO_END};
+const uint16_t PROGMEM klm_combo[]  = {KC_SPACE, KC_K, KC_L, KC_SCOLON, COMBO_END};
+const uint16_t PROGMEM jklm_combo[] = {KC_SPACE, KC_J, KC_K, KC_L, KC_SCOLON, COMBO_END};
+
+// map combo names to their keys and the key they trigger
+combo_t key_combos[] = {
+
+    [COMBO_LSFT]          = COMBO(   f_combo, KC_LSFT),
+    [COMBO_LALT]          = COMBO(   d_combo, KC_LALT),
+    [COMBO_LCTL]          = COMBO(   s_combo, KC_LCTL),
+    [COMBO_LGUI]          = COMBO(   a_combo, KC_LGUI),
+    [COMBO_LSFTALT]       = COMBO(  fd_combo, LSFT(KC_LALT)),
+    [COMBO_LSFTCTL]       = COMBO(  fs_combo, LSFT(KC_LCTL)),
+    [COMBO_LSFTGUI]       = COMBO(  fa_combo, LSFT(KC_LGUI)),
+    [COMBO_LALTCTL]       = COMBO(  ds_combo, LALT(KC_LCTL)),
+    [COMBO_LALTGUI]       = COMBO(  da_combo, LALT(KC_LGUI)),
+    [COMBO_LCTLGUI]       = COMBO(  sa_combo, LCTL(KC_LGUI)),
+    [COMBO_LSFTALTCTL]    = COMBO( fds_combo, LSFT(LALT(KC_LCTL))),
+    [COMBO_LSFTALTGUI]    = COMBO( fda_combo, LSFT(LALT(KC_LGUI))),
+    [COMBO_LSFTCTLGUI]    = COMBO( dsa_combo, LCTL(LALT(KC_LGUI))),
+    [COMBO_LSFTALTCTLGUI] = COMBO(fdsa_combo, LSFT(LALT(LCTL(KC_LGUI)))),
+
+    [COMBO_RSFT]          = COMBO(   j_combo, KC_RSFT),
+    [COMBO_RALT]          = COMBO(   k_combo, KC_RALT),
+    [COMBO_RCTL]          = COMBO(   l_combo, KC_RCTL),
+    [COMBO_RGUI]          = COMBO(   m_combo, KC_RGUI),
+    [COMBO_RSFTALT]       = COMBO(  jk_combo, RSFT(KC_RALT)),
+    [COMBO_RSFTCTL]       = COMBO(  jl_combo, RSFT(KC_RCTL)),
+    [COMBO_RSFTGUI]       = COMBO(  jm_combo, RSFT(KC_RGUI)),
+    [COMBO_RALTCTL]       = COMBO(  kl_combo, RALT(KC_RCTL)),
+    [COMBO_RALTGUI]       = COMBO(  km_combo, RALT(KC_RGUI)),
+    [COMBO_RCTLGUI]       = COMBO(  lm_combo, RCTL(KC_RGUI)),
+    [COMBO_RSFTALTCTL]    = COMBO( jkl_combo, RSFT(RALT(KC_RCTL))),
+    [COMBO_RSFTALTGUI]    = COMBO( jkm_combo, RSFT(RALT(KC_RGUI))),
+    [COMBO_RSFTCTLGUI]    = COMBO( klm_combo, RALT(RCTL(KC_RGUI))),
+    [COMBO_RSFTALTCTLGUI] = COMBO(jklm_combo, RSFT(RALT(LCTL(KC_RGUI)))),
+
+    // more here...
+};

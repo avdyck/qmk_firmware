@@ -32,3 +32,7 @@
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 1
 
 #define RGB_MATRIX_STARTUP_SPD 60
+
+#define COMBO_TERM 40        // how quickly all combo keys must be pressed in succession to trigger
+#define COMBO_MUST_HOLD_MODS // if a combo triggers a modifier, only trigger when the combo is held
+#define COMBO_HOLD_TERM 0  // how long at lef one of the combo keys must be held to trigger
