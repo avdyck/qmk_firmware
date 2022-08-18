@@ -4,6 +4,8 @@ CONSOLE_ENABLE = no
 COMMAND_ENABLE = no
 DYNAMIC_MACRO_ENABLE = yes
 SPACE_CADET_ENABLE = no
+
 COMBO_ENABLE = yes
+VPATH += keyboards/gboards
 
 SRC = matrix.c
