@@ -5,9 +5,13 @@
 #define ORYX_CONFIGURATOR
 #define IGNORE_MOD_TAP_INTERRUPT
 #undef TAPPING_TERM
-#define TAPPING_TERM 180
 
-#define TAPPING_FORCE_HOLD
+// very small tapping term combined with retro tapping such that thumb keys can be used for both combos and layers
+#define RETRO_TAPPING
+#define TAPPING_TERM 35
+#define COMBO_TERM TAPPING_TERM
+#define COMBO_MUST_HOLD_MODS // if a combo triggers a modifier, only trigger when the combo is held
+#define COMBO_HOLD_TERM 0  // how long at lef one of the combo keys must be held to trigger
 
 #undef RGB_DISABLE_TIMEOUT
 #define RGB_DISABLE_TIMEOUT 300000
@@ -32,7 +36,3 @@
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 1
 
 #define RGB_MATRIX_STARTUP_SPD 60
-
-#define COMBO_TERM 30        // how quickly all combo keys must be pressed in succession to trigger
-#define COMBO_MUST_HOLD_MODS // if a combo triggers a modifier, only trigger when the combo is held
-#define COMBO_HOLD_TERM 0  // how long at lef one of the combo keys must be held to trigger
