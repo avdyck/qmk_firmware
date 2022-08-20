@@ -6,12 +6,10 @@
 #define IGNORE_MOD_TAP_INTERRUPT
 #undef TAPPING_TERM
 
-// very small tapping term combined with retro tapping such that thumb keys can be used for both combos and layers
-#define RETRO_TAPPING
-#define TAPPING_TERM 35
-#define COMBO_TERM TAPPING_TERM
-#define COMBO_MUST_HOLD_MODS // if a combo triggers a modifier, only trigger when the combo is held
-#define COMBO_HOLD_TERM 0  // how long at lef one of the combo keys must be held to trigger
+#define TAPPING_TERM 175
+#define COMBO_TERM_PER_COMBO
+//#define COMBO_MUST_HOLD_MODS
+//#define COMBO_HOLD_TERM 0
 
 #undef RGB_DISABLE_TIMEOUT
 #define RGB_DISABLE_TIMEOUT 300000
