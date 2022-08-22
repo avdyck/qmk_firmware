@@ -14,7 +14,7 @@ enum LAYERS {
 
 #define ________     KC_TRANSPARENT
 #define LTHUMB       LT(SYMBOLS, KC_ESCAPE)
-#define RTHUMB       KC_SPACE
+#define RTHUMB       LT(NAV, KC_SPACE)
 #define ESCAP        LT(NAV, KC_ESCAPE)
 #define ZOOMIN       LCTL(KC_PLUS)
 #define ZOOMOUT      LCTL(KC_MINUS)
@@ -26,8 +26,8 @@ enum LAYERS {
 #define M_DOWN       KC_AUDIO_VOL_DOWN
 #define B_UP         KC_BRIGHTNESS_UP
 #define B_DOWN       KC_BRIGHTNESS_DOWN
-#define CG_LEFT      LCTL(LGUI(KC_LEFT))
-#define CG_RIGHT     LCTL(LGUI(KC_RIGHT))
+#define CG_LEFT      C(G(KC_LEFT))
+#define CG_RIGHT     C(G(KC_RIGHT))
 #define MAC_REC1     DYN_REC_START1
 #define MAC_STOP     DYN_REC_STOP
 #define MAC_PLAY1    DYN_MACRO_PLAY1
@@ -43,9 +43,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [SYMBOLS] = LAYOUT_moonlander(
     ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
-    ________,   KC_4,      KC_0,      KC_1,      KC_2,      KC_3,      ________,              ________,  KC_7,      KC_6,         KC_5,       KC_9,       KC_8,       ________,
+    ________,   KC_CIRC,   KC_MINUS,  KC_ASTR,   KC_PLUS,   KC_HASH,   ________,              ________,  KC_PERC,   KC_LBRACKET,  KC_QUOTE,   KC_RBRACKET,KC_DLR,     ________,
     ________,   KC_EXLM,   KC_UNDS,   KC_EQUAL,  KC_AT,     KC_PIPE,   ________,              ________,  KC_AMPR,   KC_LPRN,      KC_DQUO,    KC_RPRN,    KC_BSLASH,  ________,
-    ________,   KC_HASH,   KC_MINUS,  KC_ASTR,   KC_PLUS,   KC_CIRC,                                     KC_DLR,    KC_LBRACKET,  KC_QUOTE,   KC_RBRACKET,KC_PERC,    ________,
+    ________,   KC_4,      KC_0,      KC_1,      KC_2,      KC_3,                                        KC_7,      KC_6,         KC_5,       KC_9,       KC_8,       ________,
     ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,     ________,   ________,   ________,   ________,
                                                  ________,  ________,  ________,              ________,  ________,  ________
   ),
@@ -140,9 +140,9 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         black, bluee, bluee, bluee, black,
         black, bluee, bluee, bluee, black,
         black, bluee, bluee, bluee, dblue,
-        black, bluee, bluee, bluee, green,
+        black, bluee, bluee, bluee, white,
         black, bluee, bluee, bluee,
-        black, white, white, white, black, black, white,
+        black, white, white, green, black, black, white,
 
         black, white, white, white, black,
         black, bluee, white, white, black,
@@ -155,19 +155,19 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
     [SYMBOLS] = {
         black, black, black, black, black,
-        black, yelow, green, green, black,
-        black, yelow, green, green, black,
-        black, yelow, green, green, black,
-        black, yelow, green, green, black,
-        black, yelow, green, green,
+        black, green, green, yelow, black,
+        black, green, green, yelow, black,
+        black, green, green, yelow, black,
+        black, green, green, yelow, black,
+        black, green, green, yelow,
         black, black, black, black, black, black, black,
 
         black, black, black, black, black,
-        black, yelow, green, green, black,
-        black, yelow, green, green, black,
-        black, yelow, green, green, black,
-        black, yelow, green, green, black,
-        black, yelow, green, green,
+        black, green, green, yelow, black,
+        black, green, green, yelow, black,
+        black, green, green, yelow, black,
+        black, green, green, yelow, black,
+        black, green, green, yelow,
         black, black, black, black, black, black, black
     },
 
