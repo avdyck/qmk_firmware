@@ -13,9 +13,9 @@ enum LAYERS {
 };
 
 #define ________     KC_TRANSPARENT
-#define LTHUMB       MT(KC_LSHIFT, KC_ESCAPE)
-#define RTHUMB       LT(NAV, KC_SPACE)
-#define ESCAP        KC_ESCAPE
+#define LTHUMB       LT(SYMBOLS, KC_ESCAPE)
+#define RTHUMB       KC_SPACE
+#define ESCAP        LT(NAV, KC_ESCAPE)
 #define ZOOMIN       LCTL(KC_PLUS)
 #define ZOOMOUT      LCTL(KC_MINUS)
 #define ZOOMNTR      LCTL(KC_0)
@@ -36,24 +36,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [QWERTY] = LAYOUT_moonlander(
     KC_DELETE,  ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
     KC_TAB,     KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      LCTL(KC_INSERT),       TG(5),     KC_Y,      KC_U,         KC_I,       KC_O,       KC_P,       KC_BSPACE,
-    KC_TAB,     KC_A,      KC_S,      KC_D,      KC_F,      KC_G,      LSFT(KC_INSERT),       KC_INSERT, KC_H,      KC_J,         KC_K,       KC_L,       KC_SCOLON,  KC_ENTER,
+    ESCAP,      KC_A,      KC_S,      KC_D,      KC_F,      KC_G,      LSFT(KC_INSERT),       KC_INSERT, KC_H,      KC_J,         KC_K,       KC_L,       KC_SCOLON,  KC_ENTER,
     KC_LSHIFT,  KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,                                        KC_N,      KC_M,         KC_COMMA,   KC_DOT,     KC_SLASH,   KC_GRAVE,
-    KC_LCTL,    KC_LGUI,   KC_LALT,   MO(MEDIA), MO(SYMBOLS),KC_PSCREEN,                                 TG(NUMPAD),MO(FUNCTIONS),________,   ________,   ________,   ________,
+    ________,   ________,   ________, MO(MEDIA), ________,  KC_PSCREEN,                                  TG(NUMPAD),MO(FUNCTIONS),________,   ________,   ________,   ________,
                                                  LTHUMB,    ________,  ________,              ________,  ________,  RTHUMB
   ),
   [SYMBOLS] = LAYOUT_moonlander(
     ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
     ________,   KC_4,      KC_0,      KC_1,      KC_2,      KC_3,      ________,              ________,  KC_7,      KC_6,         KC_5,       KC_9,       KC_8,       ________,
     ________,   KC_EXLM,   KC_UNDS,   KC_EQUAL,  KC_AT,     KC_PIPE,   ________,              ________,  KC_AMPR,   KC_LPRN,      KC_DQUO,    KC_RPRN,    KC_BSLASH,  ________,
-    ________,   KC_PERC,   KC_MINUS,  KC_ASTR,   KC_PLUS,   KC_CIRC,                                     KC_DLR,    KC_LBRACKET,  KC_QUOTE,   KC_RBRACKET,KC_HASH,    ________,
+    ________,   KC_HASH,   KC_MINUS,  KC_ASTR,   KC_PLUS,   KC_CIRC,                                     KC_DLR,    KC_LBRACKET,  KC_QUOTE,   KC_RBRACKET,KC_PERC,    ________,
     ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,     ________,   ________,   ________,   ________,
                                                  ________,  ________,  ________,              ________,  ________,  ________
   ),
   [NAV] = LAYOUT_moonlander(
     ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
-    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  KC_HOME,      KC_UP,      KC_END,     ________,   ________,
-    ________,   KC_LGUI,   KC_LCTRL,  KC_LALT,   KC_LSHIFT, ________,  ________,              ________,  ________,  KC_LEFT,      KC_DOWN,    KC_RIGHT,   ________,   ________,
-    ________,   ________,  ZOOMOUT,   ZOOMNTR,   ZOOMIN,    ________,                                    ________,  CG_LEFT,      ________,   CG_RIGHT,   ________,   ________,
+    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  KC_HOME,      KC_END,     ________,   ________,   ________,
+    ________,   KC_LGUI,   KC_LCTRL,  KC_LALT,   KC_LSHIFT, ________,  ________,              ________,  KC_LEFT,   KC_DOWN,      KC_UP,      KC_RIGHT,   ________,   ________,
+    ________,   ________,  ZOOMOUT,   ZOOMNTR,   ZOOMIN,    ________,                                    CG_LEFT,   KC_PGUP,      KC_PGDOWN,  CG_RIGHT,  ________,   ________,
     ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,     ________,   ________,   ________,   ________,
                                                  ________,  ________,  ________,              ________,  ________,  ________
   ),
@@ -112,8 +112,13 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        // instantly switch layers
+        case ESCAP:
+            return 0;
+        // fast switch layers + make sure combos still work
         case LTHUMB:
             return COMBO_TERM;
+        // prefer tap & combo behaviour
         default:
             return TAPPING_TERM;
     }
@@ -177,10 +182,10 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
         black, black, black, black, black,
         black, black, black, black, black,
-        black, reddd, reddd, reddd, black,
+        black, black, reddd, reddd, black,
         black, reddd, reddd, black, black,
-        black, reddd, reddd, reddd, black,
-        black, black, black, black,
+        black, reddd, reddd, black, black,
+        black, black, reddd, reddd,
         black, black, black, black, black, black, black
     },
 
