@@ -18,4 +18,7 @@ DYNAMIC_MACRO_ENABLE = yes
 COMBO_ENABLE = yes
 VPATH += keyboards/gboards
 
+# caps word
+CAPS_WORD_ENABLE = yes
+
 SRC = matrix.c

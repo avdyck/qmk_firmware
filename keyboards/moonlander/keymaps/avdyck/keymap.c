@@ -13,7 +13,7 @@ enum LAYERS {
 };
 
 #define ________     KC_TRANSPARENT
-#define LTHUMB       LT(SYMBOLS, KC_ESCAPE)
+#define LTHUMB       MT(KC_LSHIFT, KC_ESCAPE)
 #define RTHUMB       LT(NAV, KC_SPACE)
 #define ESCAP        KC_ESCAPE
 #define ZOOMIN       LCTL(KC_PLUS)
@@ -34,11 +34,11 @@ enum LAYERS {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [QWERTY] = LAYOUT_moonlander(
-    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
-    KC_DELETE,  KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      LCTL(KC_INSERT),       TG(5),     KC_Y,      KC_U,         KC_I,       KC_O,       KC_P,       KC_BSPACE,
+    KC_DELETE,  ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
+    KC_TAB,     KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      LCTL(KC_INSERT),       TG(5),     KC_Y,      KC_U,         KC_I,       KC_O,       KC_P,       KC_BSPACE,
     KC_TAB,     KC_A,      KC_S,      KC_D,      KC_F,      KC_G,      LSFT(KC_INSERT),       KC_INSERT, KC_H,      KC_J,         KC_K,       KC_L,       KC_SCOLON,  KC_ENTER,
     KC_LSHIFT,  KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,                                        KC_N,      KC_M,         KC_COMMA,   KC_DOT,     KC_SLASH,   KC_GRAVE,
-    KC_LCTL,    KC_LGUI,   KC_LALT,   MO(MEDIA), KC_LSHIFT, KC_PSCREEN,                                  TG(NUMPAD),MO(FUNCTIONS),________,   ________,   ________,   ________,
+    KC_LCTL,    KC_LGUI,   KC_LALT,   MO(MEDIA), MO(SYMBOLS),KC_PSCREEN,                                 TG(NUMPAD),MO(FUNCTIONS),________,   ________,   ________,   ________,
                                                  LTHUMB,    ________,  ________,              ________,  ________,  RTHUMB
   ),
   [SYMBOLS] = LAYOUT_moonlander(
@@ -51,9 +51,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [NAV] = LAYOUT_moonlander(
     ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
-    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  KC_HOME,      KC_END,     ________,   ________,   ________,
-    ________,   KC_LGUI,   KC_LCTRL,  KC_LALT,   KC_LSHIFT, ________,  ________,              ________,  KC_LEFT,   KC_DOWN,      KC_UP,      KC_RIGHT,   ________,   ________,
-    ________,   ________,  ZOOMOUT,   ZOOMNTR,   ZOOMIN,    ________,                                    CG_LEFT,   KC_PGUP,      KC_PGDOWN,  CG_RIGHT,  ________,   ________,
+    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  KC_HOME,      KC_UP,      KC_END,     ________,   ________,
+    ________,   KC_LGUI,   KC_LCTRL,  KC_LALT,   KC_LSHIFT, ________,  ________,              ________,  ________,  KC_LEFT,      KC_DOWN,    KC_RIGHT,   ________,   ________,
+    ________,   ________,  ZOOMOUT,   ZOOMNTR,   ZOOMIN,    ________,                                    ________,  CG_LEFT,      ________,   CG_RIGHT,   ________,   ________,
     ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,     ________,   ________,   ________,   ________,
                                                  ________,  ________,  ________,              ________,  ________,  ________
   ),
@@ -106,7 +106,16 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
         case LTHUMB:
         case RTHUMB:
         default:
-            return 50;
+            return COMBO_TERM;
+    }
+}
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case LTHUMB:
+            return COMBO_TERM;
+        default:
+            return TAPPING_TERM;
     }
 }
 
@@ -126,9 +135,9 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         black, bluee, bluee, bluee, black,
         black, bluee, bluee, bluee, black,
         black, bluee, bluee, bluee, dblue,
-        black, bluee, bluee, bluee, white,
+        black, bluee, bluee, bluee, green,
         black, bluee, bluee, bluee,
-        black, white, white, green, black, black, white,
+        black, white, white, white, black, black, white,
 
         black, white, white, white, black,
         black, bluee, white, white, black,
@@ -168,10 +177,10 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
         black, black, black, black, black,
         black, black, black, black, black,
-        black, black, reddd, reddd, black,
         black, reddd, reddd, reddd, black,
+        black, reddd, reddd, black, black,
         black, reddd, reddd, reddd, black,
-        black, black, reddd, reddd,
+        black, black, black, black,
         black, black, black, black, black, black, black
     },
 
