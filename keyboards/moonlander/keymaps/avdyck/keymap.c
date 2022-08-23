@@ -43,7 +43,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [SYMBOLS] = LAYOUT_moonlander(
     ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
-    ________,   KC_CIRC,   KC_MINUS,  KC_ASTR,   KC_PLUS,   KC_HASH,   ________,              ________,  KC_PERC,   KC_LBRACKET,  KC_QUOTE,   KC_RBRACKET,KC_DLR,     ________,
+    ________,   KC_CIRC,   KC_MINUS,  KC_TILDE,  KC_PLUS,   KC_ASTR,   ________,              ________,  KC_PERC,   KC_LBRC,      KC_QUOTE,   KC_RBRC,    KC_DLR,     ________,
     ________,   KC_EXLM,   KC_UNDS,   KC_EQUAL,  KC_AT,     KC_PIPE,   ________,              ________,  KC_AMPR,   KC_LPRN,      KC_DQUO,    KC_RPRN,    KC_BSLASH,  ________,
     ________,   KC_4,      KC_0,      KC_1,      KC_2,      KC_3,                                        KC_7,      KC_6,         KC_5,       KC_9,       KC_8,       ________,
     ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,     ________,   ________,   ________,   ________,
@@ -53,7 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
     ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  KC_HOME,      KC_END,     ________,   ________,   ________,
     ________,   KC_LGUI,   KC_LCTRL,  KC_LALT,   KC_LSHIFT, ________,  ________,              ________,  KC_LEFT,   KC_DOWN,      KC_UP,      KC_RIGHT,   ________,   ________,
-    ________,   ________,  ZOOMOUT,   ZOOMNTR,   ZOOMIN,    ________,                                    CG_LEFT,   KC_PGUP,      KC_PGDOWN,  CG_RIGHT,  ________,   ________,
+    ________,   ________,  ZOOMOUT,   ZOOMNTR,   ZOOMIN,    ________,                                    CG_LEFT,   KC_PGUP,      KC_PGDOWN,  CG_RIGHT,   ________,   ________,
     ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,     ________,   ________,   ________,   ________,
                                                  ________,  ________,  ________,              ________,  ________,  ________
   ),
@@ -105,8 +105,9 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     switch (combo->keys[0]) {
         case LTHUMB:
         case RTHUMB:
-        default:
             return COMBO_TERM;
+        default:
+            return 30;
     }
 }
 
