@@ -1,36 +1,7 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
+#include "keydefs.h"
 #include "g/keymap_combo.h"
-
-enum LAYERS {
-    QWERTY,
-    SYMBOLS,
-    NAV,
-    FUNCTIONS,
-    MEDIA,
-    NUMPAD,
-    GAMING
-};
-
-#define ________     KC_TRANSPARENT
-#define LTHUMB       LT(SYMBOLS, KC_ESCAPE)
-#define RTHUMB       LT(NAV, KC_SPACE)
-#define ESCAP        LT(NAV, KC_ESCAPE)
-#define ZOOMIN       LCTL(KC_PLUS)
-#define ZOOMOUT      LCTL(KC_MINUS)
-#define ZOOMNTR      LCTL(KC_0)
-#define M_PREV       KC_MEDIA_PREV_TRACK
-#define M_NEXT       KC_MEDIA_NEXT_TRACK
-#define M_PLAY       KC_MEDIA_PLAY_PAUSE
-#define M_UP         KC_AUDIO_VOL_UP
-#define M_DOWN       KC_AUDIO_VOL_DOWN
-#define B_UP         KC_BRIGHTNESS_UP
-#define B_DOWN       KC_BRIGHTNESS_DOWN
-#define CG_LEFT      C(G(KC_LEFT))
-#define CG_RIGHT     C(G(KC_RIGHT))
-#define MAC_REC1     DYN_REC_START1
-#define MAC_STOP     DYN_REC_STOP
-#define MAC_PLAY1    DYN_MACRO_PLAY1
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [QWERTY] = LAYOUT_moonlander(
@@ -52,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [NAV] = LAYOUT_moonlander(
     ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
     ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  KC_HOME,      KC_END,     ________,   ________,   ________,
-    ________,   KC_LGUI,   KC_LCTRL,  KC_LALT,   KC_LSHIFT, ________,  ________,              ________,  KC_LEFT,   KC_DOWN,      KC_UP,      KC_RIGHT,   ________,   ________,
+    ________,   KC_LGUI,   KC_LSFT,   KC_LALT,   KC_LCTL,   ________,  ________,              ________,  KC_LEFT,   KC_DOWN,      KC_UP,      KC_RIGHT,   ________,   ________,
     ________,   ________,  ZOOMOUT,   ZOOMNTR,   ZOOMIN,    ________,                                    CG_LEFT,   KC_PGUP,      KC_PGDOWN,  CG_RIGHT,   ________,   ________,
     ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,     ________,   ________,   ________,   ________,
                                                  ________,  ________,  ________,              ________,  ________,  ________
@@ -60,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [FUNCTIONS] = LAYOUT_moonlander(
     ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
     ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  KC_F10,    KC_F7,        KC_F8,      KC_F9,      ________,   ________,
-    ________,   KC_LGUI,   KC_LCTL,   KC_LALT,   KC_LSHIFT, ________,  ________,              ________,  KC_F11,    KC_F4,        KC_F5,      KC_F6,      ________,   ________,
+    ________,   KC_LGUI,   KC_LSFT,   KC_LALT,   KC_LCTL,   ________,  ________,              ________,  KC_F11,    KC_F4,        KC_F5,      KC_F6,      ________,   ________,
     ________,   ________,  ________,  ________,  ________,  ________,                                    KC_F12,    KC_F1,        KC_F2,      KC_F3,      ________,   ________,
     ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,     ________,   ________,   ________,   ________,
                                                  ________,  ________,  ________,              ________,  ________,  ________
@@ -97,7 +68,27 @@ void keyboard_post_init_user(void) {
   rgb_matrix_enable();
 }
 
+static void process_long_tap(bool matching_keycode, keyrecord_t *record, bool *pressed_state, uint16_t long_press_keycode) {
+  bool pressed = record->event.pressed;
+  if (matching_keycode) {
+    if (pressed) {
+      *pressed_state = true;
+    } else {
+      if (*pressed_state) {
+        tap_code16(long_press_keycode);
+      }
+    }
+  } else if (pressed) {
+    *pressed_state = false;
+  }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  static bool lthumb_state = false;
+  static bool escap_state = false;
+  process_long_tap(keycode == ESCAP, record, &escap_state, KC_ESCAPE);
+  process_long_tap(keycode == LTHUMB, record, &lthumb_state, KC_ESCAPE);
+
   return true;
 }
 
@@ -114,8 +105,8 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         // instantly switch layers
-        case ESCAP:
-            return 0;
+         case ESCAP:
+             return 0;
         // fast switch layers + make sure combos still work
         case LTHUMB:
             return COMBO_TERM;
