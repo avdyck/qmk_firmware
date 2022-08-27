@@ -9,10 +9,15 @@ enum LAYERS {
     GAMING
 };
 
+enum keys {
+    CUSTOM_1 = SAFE_RANGE,
+    CUSTOM_2
+};
+
 #define ________     KC_TRANSPARENT
-#define LTHUMB       LT(SYMBOLS,  KC_ESCAPE)
-#define RTHUMB       MT(MOD_LSFT, KC_SPACE)
-#define ESCAP        LT(NAV, KC_ESCAPE)
+#define LTHUMB       CUSTOM_1
+#define RTHUMB       CUSTOM_2
+#define ESCAP        MO(NAV)
 #define ZOOMIN       LCTL(KC_PLUS)
 #define ZOOMOUT      LCTL(KC_MINUS)
 #define ZOOMNTR      LCTL(KC_0)

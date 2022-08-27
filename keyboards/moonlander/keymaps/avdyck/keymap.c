@@ -82,8 +82,8 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         // instantly switch layers
-         case ESCAP:
-             return 0;
+        // case ESCAP:
+        //     return 0;
         // fast switch layers + make sure combos still work
         case LTHUMB:
             return COMBO_TERM;
@@ -93,31 +93,106 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-static void process_long_tap(uint16_t keycode, uint16_t expected_keycode, keyrecord_t *record, uint16_t *pressed_time, uint16_t long_press_keycode) {
-  bool pressed = record->event.pressed;
-  if (keycode == expected_keycode) {
-    if (pressed) {
-      *pressed_time = 1 | record->event.time;
-    } else {
-      if (*pressed_time && (record->event.time - *pressed_time) > get_tapping_term(keycode, record)) {
-        tap_code16(long_press_keycode);
-      }
-    }
-  } else if (pressed) {
-    *pressed_time = 0;
+#define QUEUE_MASK 4
+#define QUEUE_CAPACITY 1 << QUEUE_MASK
+
+typedef struct {
+  uint16_t keycode;
+  uint16_t time;
+  bool pressed;
+} key_event;
+
+typedef struct {
+  uint8_t front;
+  uint8_t size;
+  key_event elems[QUEUE_CAPACITY];
+} event_queue_t;
+
+static event_queue_t event_queue;
+
+static bool handle(key_event *event) {
+  uint16_t realcode = event->keycode;
+  if (event->keycode == LTHUMB) {
+    realcode = KC_ESCAPE;
+  }
+  if (event->keycode == RTHUMB) {
+    realcode = KC_SPACE;
+  }
+  if (event->pressed) {
+    register_code(realcode);
+  } else {
+    unregister_code(realcode);
+  }
+  return true;
+}
+
+static bool handle_front(bool stop_at_custom) {
+  uint8_t index = event_queue.front;
+  key_event *event = &event_queue.elems[index];
+  if (stop_at_custom && (event->keycode == LTHUMB || event->keycode == RTHUMB)) return false;
+  event_queue.front = (index + 1) & QUEUE_MASK;
+  event_queue.size--;
+  return handle(event);
+}
+
+static void empty_the_queue(bool stop_at_custom) {
+  while (event_queue.size && handle_front(stop_at_custom)) {
+    // do nothing
   }
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  static uint16_t lthumb_time = 0;
-  static uint16_t rthumb_time = 0;
-  static uint16_t escap_time  = 0;
-  process_long_tap(keycode, ESCAP,  record, &escap_time,  KC_ESCAPE);
-  process_long_tap(keycode, LTHUMB, record, &lthumb_time, KC_ESCAPE);
-  process_long_tap(keycode, RTHUMB, record, &rthumb_time, KC_SPACE);
-
-  return true;
+static void register_key_event(uint16_t keycode, keyrecord_t *record) {
+  uint8_t index = (event_queue.front + event_queue.size) & QUEUE_MASK;
+  event_queue.size++;
+  event_queue.elems[index] = (key_event) { keycode, record->event.time, record->event.pressed };
 }
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  bool just_press_da_button = false;
+  if (keycode == LTHUMB || keycode == RTHUMB) {
+    just_press_da_button = !record->event.pressed;
+
+    if (just_press_da_button) {
+      // release -> definitely within tap range cause hold would have been handled
+      if (keycode == LTHUMB) {
+        layer_off(SYMBOLS);
+      } else {
+        unregister_mods(MOD_LSFT);
+      }
+    }
+  } else {
+    just_press_da_button = event_queue.size == 0;
+  }
+
+  if (just_press_da_button) {
+    empty_the_queue(false);
+    return true;
+  }
+  // shit's whack yo
+  register_key_event(keycode, record);
+  return false;
+}
+
+void matrix_scan_user(void) { // The very important timer.
+  if (event_queue.size) {
+    uint8_t index = event_queue.front;
+    key_event *event = &event_queue.elems[index];
+    if (timer_elapsed(event->time) > 100) {
+      // remove da front
+      event_queue.front = (index + 1) & QUEUE_MASK;
+      event_queue.size--;
+      // activate correct mod/layer
+      if (event->keycode == LTHUMB) {
+        layer_on(SYMBOLS);
+      } else {
+        register_mods(MOD_LSFT);
+      }
+      // empty da queue until next custom
+      empty_the_queue(true);
+    }
+  }
+}
+
 
 #define white {0,0,255}
 #define reddd {249,228,255}
