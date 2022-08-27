@@ -10,8 +10,8 @@ enum LAYERS {
 };
 
 #define ________     KC_TRANSPARENT
-#define LTHUMB       LT(SYMBOLS, KC_ESCAPE)
-#define RTHUMB       KC_SPACE
+#define LTHUMB       LT(SYMBOLS,  KC_ESCAPE)
+#define RTHUMB       MT(MOD_LSFT, KC_SPACE)
 #define ESCAP        LT(NAV, KC_ESCAPE)
 #define ZOOMIN       LCTL(KC_PLUS)
 #define ZOOMOUT      LCTL(KC_MINUS)

@@ -5,7 +5,7 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [QWERTY] = LAYOUT_moonlander(
-    KC_DELETE,  ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
+    KC_DELETE,  KC_4,      KC_0,      KC_1,      KC_2,      KC_3,      ________,              ________,  KC_7,      KC_6,         KC_5,       KC_9,       KC_8,       ________,
     KC_TAB,     KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      LCTL(KC_INSERT),       TG(5),     KC_Y,      KC_U,         KC_I,       KC_O,       KC_P,       KC_BSPACE,
     ESCAP,      KC_A,      KC_S,      KC_D,      KC_F,      KC_G,      LSFT(KC_INSERT),       KC_INSERT, KC_H,      KC_J,         KC_K,       KC_L,       KC_SCOLON,  KC_ENTER,
     KC_LSHIFT,  KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,                                        KC_N,      KC_M,         KC_COMMA,   KC_DOT,     KC_SLASH,   KC_GRAVE,
@@ -68,36 +68,13 @@ void keyboard_post_init_user(void) {
   rgb_matrix_enable();
 }
 
-static void process_long_tap(bool matching_keycode, keyrecord_t *record, bool *pressed_state, uint16_t long_press_keycode) {
-  bool pressed = record->event.pressed;
-  if (matching_keycode) {
-    if (pressed) {
-      *pressed_state = true;
-    } else {
-      if (*pressed_state) {
-        tap_code16(long_press_keycode);
-      }
-    }
-  } else if (pressed) {
-    *pressed_state = false;
-  }
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  static bool lthumb_state = false;
-  static bool escap_state = false;
-  process_long_tap(keycode == ESCAP, record, &escap_state, KC_ESCAPE);
-  process_long_tap(keycode == LTHUMB, record, &lthumb_state, KC_ESCAPE);
-
-  return true;
-}
-
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     switch (combo->keys[0]) {
         case LTHUMB:
         case RTHUMB:
             return COMBO_TERM;
         default:
+            // non-thumb combos have to be faster cause of typos
             return 30;
     }
 }
@@ -110,10 +87,36 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         // fast switch layers + make sure combos still work
         case LTHUMB:
             return COMBO_TERM;
-        // prefer tap & combo behaviour
+        // prevent hold misfires
         default:
             return TAPPING_TERM;
     }
+}
+
+static void process_long_tap(uint16_t keycode, uint16_t expected_keycode, keyrecord_t *record, uint16_t *pressed_time, uint16_t long_press_keycode) {
+  bool pressed = record->event.pressed;
+  if (keycode == expected_keycode) {
+    if (pressed) {
+      *pressed_time = 1 | record->event.time;
+    } else {
+      if (*pressed_time && (record->event.time - *pressed_time) > get_tapping_term(keycode, record)) {
+        tap_code16(long_press_keycode);
+      }
+    }
+  } else if (pressed) {
+    *pressed_time = 0;
+  }
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  static uint16_t lthumb_time = 0;
+  static uint16_t rthumb_time = 0;
+  static uint16_t escap_time  = 0;
+  process_long_tap(keycode, ESCAP,  record, &escap_time,  KC_ESCAPE);
+  process_long_tap(keycode, LTHUMB, record, &lthumb_time, KC_ESCAPE);
+  process_long_tap(keycode, RTHUMB, record, &rthumb_time, KC_SPACE);
+
+  return true;
 }
 
 #define white {0,0,255}
@@ -142,7 +145,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         black, bluee, bluee, white, black,
         black, bluee, bluee, bluee, purpl,
         black, bluee, bluee, bluee,
-        black, white, white, reddd, black, black, white
+        black, white, white, white, black, black, white
     },
 
     [SYMBOLS] = {
