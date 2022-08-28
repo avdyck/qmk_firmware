@@ -5,59 +5,59 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [QWERTY] = LAYOUT_moonlander(
-    KC_DELETE,  KC_4,      KC_0,      KC_1,      KC_2,      KC_3,      ________,              ________,  KC_7,      KC_6,         KC_5,       KC_9,       KC_8,       ________,
-    KC_TAB,     KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      LCTL(KC_INSERT),       TG(5),     KC_Y,      KC_U,         KC_I,       KC_O,       KC_P,       KC_BSPACE,
-    ESCAP,      KC_A,      KC_S,      KC_D,      KC_F,      KC_G,      LSFT(KC_INSERT),       KC_INSERT, KC_H,      KC_J,         KC_K,       KC_L,       KC_SCOLON,  KC_ENTER,
-    KC_LSHIFT,  KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,                                        KC_N,      KC_M,         KC_COMMA,   KC_DOT,     KC_SLASH,   KC_GRAVE,
-    ________,   ________,   ________, MO(MEDIA), ________,  KC_PSCREEN,                                  TG(NUMPAD),MO(FUNCTIONS),________,   ________,   ________,   ________,
+    KC_DELETE,  KC_4,      KC_0,      KC_1,      KC_2,      KC_3,      ________,              ________,  KC_7,      KC_6,       KC_5,       KC_9,       KC_8,       ________,
+    KC_TAB,     KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      LCTL(KC_INSERT),       TG(5),     KC_Y,      KC_U,       KC_I,       KC_O,       KC_P,       KC_BSPACE,
+    ESCAP,      KC_A,      KC_S,      KC_D,      KC_F,      KC_G,      LSFT(KC_INSERT),       KC_INSERT, KC_H,      KC_J,       KC_K,       KC_L,       KC_SCLN,    KC_ENTER,
+    KC_LSHIFT,  KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,                                        KC_N,      KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    KC_GRAVE,
+    ________,   ________,   ________, MO(MEDIA), ________,  KC_PSCREEN,                                  TG(NUMPAD),MO(FUNCTIONS),________, ________,   ________,   ________,
                                                  LTHUMB,    ________,  ________,              ________,  ________,  RTHUMB
   ),
   [SYMBOLS] = LAYOUT_moonlander(
-    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
-    ________,   KC_CIRC,   KC_MINUS,  KC_TILDE,  KC_PLUS,   KC_ASTR,   ________,              ________,  KC_PERC,   KC_LBRC,      KC_QUOTE,   KC_RBRC,    KC_DLR,     ________,
-    ________,   KC_EXLM,   KC_UNDS,   KC_EQUAL,  KC_AT,     KC_PIPE,   ________,              ________,  KC_AMPR,   KC_LPRN,      KC_DQUO,    KC_RPRN,    KC_BSLASH,  ________,
-    ________,   KC_4,      KC_0,      KC_1,      KC_2,      KC_3,                                        KC_7,      KC_6,         KC_5,       KC_9,       KC_8,       ________,
-    ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,     ________,   ________,   ________,   ________,
+    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,   ________,   ________,   ________,   ________,
+    ________,   SYM_Q,     SYM_W,     SYM_E,     SYM_R,     SYM_T,     ________,              ________,  SYM_Y,      SYM_U,     SYM_I,      SYM_O,      SYM_P,      ________,
+    ________,   SYM_A,     SYM_S,     SYM_D,     SYM_F,     SYM_G,     ________,              ________,  SYM_H,      SYM_J,     SYM_K,      SYM_L,      SYM_SCLN,   ________,
+    ________,   SYM_Z,     SYM_X,     SYM_C,     SYM_V,     SYM_B,                                       SYM_N,      SYM_M,     SYM_COMM,   SYM_DOT,    SYM_SLSH,   ________,
+    ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,   ________,   ________,   ________,   ________,
                                                  ________,  ________,  ________,              ________,  ________,  ________
   ),
   [NAV] = LAYOUT_moonlander(
-    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
-    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  KC_HOME,      KC_END,     ________,   ________,   ________,
-    ________,   KC_LGUI,   KC_LSFT,   KC_LALT,   KC_LCTL,   ________,  ________,              ________,  KC_LEFT,   KC_DOWN,      KC_UP,      KC_RIGHT,   ________,   ________,
-    ________,   ________,  ZOOMOUT,   ZOOMNTR,   ZOOMIN,    ________,                                    CG_LEFT,   KC_PGUP,      KC_PGDOWN,  CG_RIGHT,   ________,   ________,
-    ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,     ________,   ________,   ________,   ________,
+    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,   ________,   ________,   ________,   ________,
+    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  KC_HOME,    KC_END,     ________,   ________,   ________,
+    ________,   KC_LGUI,   KC_LSFT,   KC_LALT,   KC_LCTL,   ________,  ________,              ________,  KC_LEFT,   KC_DOWN,    KC_UP,      KC_RIGHT,   ________,   ________,
+    ________,   ________,  ZOOMOUT,   ZOOMNTR,   ZOOMIN,    ________,                                    CG_LEFT,   KC_PGUP,    KC_PGDOWN,  CG_RIGHT,   ________,   ________,
+    ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,   ________,   ________,   ________,   ________,
                                                  ________,  ________,  ________,              ________,  ________,  ________
   ),
   [FUNCTIONS] = LAYOUT_moonlander(
-    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
-    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  KC_F10,    KC_F7,        KC_F8,      KC_F9,      ________,   ________,
-    ________,   KC_LGUI,   KC_LSFT,   KC_LALT,   KC_LCTL,   ________,  ________,              ________,  KC_F11,    KC_F4,        KC_F5,      KC_F6,      ________,   ________,
-    ________,   ________,  ________,  ________,  ________,  ________,                                    KC_F12,    KC_F1,        KC_F2,      KC_F3,      ________,   ________,
-    ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,     ________,   ________,   ________,   ________,
+    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,   ________,   ________,   ________,   ________,
+    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  KC_F10,    KC_F7,      KC_F8,      KC_F9,      ________,   ________,
+    ________,   KC_LGUI,   KC_LSFT,   KC_LALT,   KC_LCTL,   ________,  ________,              ________,  KC_F11,    KC_F4,      KC_F5,      KC_F6,      ________,   ________,
+    ________,   ________,  ________,  ________,  ________,  ________,                                    KC_F12,    KC_F1,      KC_F2,      KC_F3,      ________,   ________,
+    ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,   ________,   ________,   ________,   ________,
                                                  ________,  ________,  ________,              ________,  ________,  ________
   ),
   [MEDIA] = LAYOUT_moonlander(
-    RESET,      ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
-    ________,   ________,  BL_DEC,    M_UP,      BL_INC,    ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
-    ________,   ________,  M_PREV,    M_PLAY,    M_NEXT,    ________,  ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
-    ________,   ________,  B_DOWN,    M_DOWN,    B_UP,      ________,                                    ________,  ________,     ________,   ________,   ________,   ________,
-    ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,     ________,   ________,   ________,   ________,
+    RESET,      ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,   ________,   ________,   ________,   ________,
+    ________,   ________,  BL_DEC,    M_UP,      BL_INC,    ________,  ________,              ________,  ________,  ________,   ________,   ________,   ________,   ________,
+    ________,   ________,  M_PREV,    M_PLAY,    M_NEXT,    ________,  ________,              ________,  ________,  ________,   ________,   ________,   ________,   ________,
+    ________,   ________,  B_DOWN,    M_DOWN,    B_UP,      ________,                                    ________,  ________,   ________,   ________,   ________,   ________,
+    ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  ________,   ________,   ________,   ________,   ________,
                                                  ________,  ________,  ________,              ________,  ________,  ________
   ),
   [NUMPAD] = LAYOUT_moonlander(
-    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,     KC_KP_SLASH,KC_KP_ASTERISK,________,________,
-    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  KC_KP_7,      KC_KP_8,    KC_KP_9,    KC_KP_MINUS,________,
-    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  KC_KP_4,      KC_KP_5,    KC_KP_6,    KC_KP_PLUS, ________,
-    ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  KC_KP_1,      KC_KP_2,    KC_KP_3,    KC_KP_ENTER,________,
-    ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  KC_KP_0,      ________,   KC_KP_DOT,  KC_KP_ENTER,________,
-                                                 ________,  ________,  ________,                         ________,  ________,     ________
+    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  ________,   KC_KP_SLASH,KC_KP_ASTERISK,________,________,
+    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  KC_KP_7,    KC_KP_8,    KC_KP_9,    KC_KP_MINUS,________,
+    ________,   ________,  ________,  ________,  ________,  ________,  ________,              ________,  ________,  KC_KP_4,    KC_KP_5,    KC_KP_6,    KC_KP_PLUS, ________,
+    ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  KC_KP_1,    KC_KP_2,    KC_KP_3,    KC_KP_ENTER,________,
+    ________,   ________,  ________,  ________,  ________,  ________,                                    ________,  KC_KP_0,    ________,   KC_KP_DOT,  KC_KP_ENTER,________,
+                                                 ________,  ________,  ________,                         ________,  ________,   ________
   ),
   [GAMING] = LAYOUT_moonlander(
-    ________,   KC_4,      KC_0,      KC_1,      KC_2,      KC_3,      ________,              ________,  ________,  ________,     ________,   ________,   ________,   ________,
-    KC_TAB,     KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      ________,              ________,  KC_Y,      KC_U,         KC_I,       KC_O,       KC_P,       ________,
-    KC_ESCAPE,  KC_A,      KC_S,      KC_D,      KC_F,      KC_G,      ________,              ________,  KC_H,      KC_J,         KC_K,       KC_L,       KC_SCOLON,  ________,
-    KC_LSHIFT,  KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,                                        KC_N,      KC_M,         KC_COMMA,   KC_DOT,     KC_SLASH,   ________,
-    KC_LCTRL,   KC_LGUI,   ________,  KC_LALT,   KC_SPACE,  ________,                                    ________,  ________,     ________,   ________,   ________,   ________,
+    ________,   KC_4,      KC_0,      KC_1,      KC_2,      KC_3,      ________,              ________,  ________,  ________,   ________,   ________,   ________,   ________,
+    KC_TAB,     KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      ________,              ________,  KC_Y,      KC_U,       KC_I,       KC_O,       KC_P,       ________,
+    KC_ESCAPE,  KC_A,      KC_S,      KC_D,      KC_F,      KC_G,      ________,              ________,  KC_H,      KC_J,       KC_K,       KC_L,       KC_SCOLON,  ________,
+    KC_LSHIFT,  KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,                                        KC_N,      KC_M,       KC_COMMA,   KC_DOT,     KC_SLASH,   ________,
+    KC_LCTRL,   KC_LGUI,   ________,  KC_LALT,   KC_SPACE,  ________,                                    ________,  ________,   ________,   ________,   ________,   ________,
                                                  ________,  ________,  ________,              ________,  ________,  ________
   ),
 };
@@ -79,117 +79,203 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     }
 }
 
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        // instantly switch layers
-        // case ESCAP:
-        //     return 0;
-        // fast switch layers + make sure combos still work
-        case LTHUMB:
-            return COMBO_TERM;
-        // prevent hold misfires
-        default:
-            return TAPPING_TERM;
-    }
-}
-
-#define QUEUE_MASK 4
-#define QUEUE_CAPACITY 1 << QUEUE_MASK
-
 typedef struct {
+  bool active;
   uint16_t keycode;
-  uint16_t time;
-  bool pressed;
+  uint16_t pressed_time;
 } key_event;
 
 typedef struct {
-  uint8_t front;
-  uint8_t size;
-  key_event elems[QUEUE_CAPACITY];
-} event_queue_t;
+  uint16_t pressed_time;
+  bool pressed;
+  bool held;
+  bool retro_pressed;
+} custom_key_state;
 
-static event_queue_t event_queue;
+// keep track of when we pressed lthumb, rthumb or a key pressed while lthumb or rthumb was depressed
+static custom_key_state lthumb_state = {};
+static custom_key_state rthumb_state = {};
+static key_event queued_key = {};
 
-static bool handle(key_event *event) {
-  uint16_t realcode = event->keycode;
-  if (event->keycode == LTHUMB) {
-    realcode = KC_ESCAPE;
+void activate_lheld(void) {
+  // activate symbols layer
+  lthumb_state.held = true;
+  layer_on(SYMBOLS);
+}
+
+void deactivate_lheld(void) {
+  // deactivate symbols layer
+  lthumb_state.held = false;
+  layer_off(SYMBOLS);
+}
+
+void activate_rheld(void) {
+  // activate shift
+  rthumb_state.held = true;
+  register_mods(MOD_LSFT);
+}
+
+void deactivate_rheld(void) {
+  // deactivate shift
+  rthumb_state.held = false;
+  unregister_mods(MOD_LSFT);
+}
+
+void tap_key(uint16_t keycode) {
+  int lay = biton32(layer_state);
+  if (lay == SYMBOLS) {
+    keycode = sl(keycode);
   }
-  if (event->keycode == RTHUMB) {
-    realcode = KC_SPACE;
+  tap_code16(keycode);
+}
+
+void tap_queued_key(void) {
+  lthumb_state.retro_pressed = false;
+  rthumb_state.retro_pressed = false;
+  tap_key(queued_key.keycode);
+  queued_key.active = false;
+}
+
+bool pressed_and_not_held(custom_key_state *state) {
+  return state->pressed && !state->held;
+}
+
+void custom_press(custom_key_state *state, keyrecord_t *record) {
+  state->pressed = true;
+  state->pressed_time = record->event.time;
+  state->retro_pressed = true;
+  state->held = false;
+}
+
+void custom_release(custom_key_state *state) {
+  state->pressed = false;
+  state->retro_pressed = false;
+  state->held = false;
+}
+
+//  _____                      //
+// |  __ \                     //
+// | |__) | __ ___  ___ ___    //
+// |  ___/ '__/ _ \/ __/ __|   //
+// | |   | | |  __/\__ \__ \   //
+// |_|   |_|  \___||___/___/   //
+
+bool handle_key_pressed(uint16_t keycode, keyrecord_t *record) {
+  lthumb_state.retro_pressed = false;
+  rthumb_state.retro_pressed = false;
+
+  // first handle queued keys
+  if (queued_key.active) {
+    bool hold_activation = false;
+    if (pressed_and_not_held(&lthumb_state)) {
+      activate_lheld();
+      hold_activation = true;
+    }
+    if (pressed_and_not_held(&rthumb_state)) {
+      activate_rheld();
+      hold_activation = true;
+    }
+    if (hold_activation) {
+      tap_queued_key();
+    }
   }
-  if (event->pressed) {
-    register_code(realcode);
-  } else {
-    unregister_code(realcode);
+
+  // check if custom pressed but not held
+  if (pressed_and_not_held(&lthumb_state) || pressed_and_not_held(&rthumb_state)) {
+    // add key to queue
+    queued_key.active = true;
+    queued_key.keycode = keycode;
+    queued_key.pressed_time = record->event.time;
+    return false;
   }
+
+  // check if keypress is custom key
+  if (keycode == LTHUMB) {
+    custom_press(&lthumb_state, record);
+    return false;
+  }
+  if (keycode == RTHUMB) {
+    custom_press(&rthumb_state, record);
+    return false;
+  }
+
+  // normal-ass key press
   return true;
 }
 
-static bool handle_front(bool stop_at_custom) {
-  uint8_t index = event_queue.front;
-  key_event *event = &event_queue.elems[index];
-  if (stop_at_custom && (event->keycode == LTHUMB || event->keycode == RTHUMB)) return false;
-  event_queue.front = (index + 1) & QUEUE_MASK;
-  event_queue.size--;
-  return handle(event);
-}
+//  _______ _                          //
+// |__   __(_)                         //
+//    | |   _ _ __ ___   ___ _ __      //
+//    | |  | | '_ ` _ \ / _ \ '__|     //
+//    | |  | | | | | | |  __/ |        //
+//    |_|  |_|_| |_| |_|\___|_|        //
+//
 
-static void empty_the_queue(bool stop_at_custom) {
-  while (event_queue.size && handle_front(stop_at_custom)) {
-    // do nothing
+void matrix_scan_user(void) {
+  bool hold_activation = false;
+  if (pressed_and_not_held(&lthumb_state)) {
+    if (timer_elapsed(lthumb_state.pressed_time) > TAPPING_TERM) {
+      activate_lheld();
+      hold_activation = true;
+    }
+  }
+  if (pressed_and_not_held(&rthumb_state)) {
+    if (timer_elapsed(rthumb_state.pressed_time) > TAPPING_TERM) {
+      activate_rheld();
+      hold_activation = true;
+    }
+  }
+  if (hold_activation && queued_key.active) {
+    tap_queued_key();
   }
 }
 
-static void register_key_event(uint16_t keycode, keyrecord_t *record) {
-  uint8_t index = (event_queue.front + event_queue.size) & QUEUE_MASK;
-  event_queue.size++;
-  event_queue.elems[index] = (key_event) { keycode, record->event.time, record->event.pressed };
+//  _____      _                       //
+// |  __ \    | |                      //
+// | |__) |___| | ___  __ _ ___  ___   //
+// |  _  // _ \ |/ _ \/ _` / __|/ _ \  //
+// | | \ \  __/ |  __/ (_| \__ \  __/  //
+// |_|  \_\___|_|\___|\__,_|___/\___|  //
+//
+
+bool handle_key_release(uint16_t keycode, keyrecord_t *record) {
+  // handle queued keys TODO: grace period
+  if (queued_key.active && keycode == queued_key.keycode) {
+    tap_queued_key();
+    return false;
+  }
+
+  // handle custom keys
+  if (keycode == LTHUMB) {
+    if (lthumb_state.retro_pressed || !lthumb_state.held) {
+      tap_code16(KC_ESCAPE);
+    }
+    if (lthumb_state.held) {
+      deactivate_lheld();
+    }
+    custom_release(&lthumb_state);
+    return false;
+  }
+  if (keycode == RTHUMB) {
+    if (rthumb_state.retro_pressed || !rthumb_state.held) {
+      tap_code16(KC_SPACE);
+    }
+    if (rthumb_state.held) {
+      deactivate_rheld();
+    }
+    custom_release(&rthumb_state);
+    return false;
+  }
+
+  // normal-ass release
+  return true;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  bool just_press_da_button = false;
-  if (keycode == LTHUMB || keycode == RTHUMB) {
-    just_press_da_button = !record->event.pressed;
-
-    if (just_press_da_button) {
-      // release -> definitely within tap range cause hold would have been handled
-      if (keycode == LTHUMB) {
-        layer_off(SYMBOLS);
-      } else {
-        unregister_mods(MOD_LSFT);
-      }
-    }
+  if (record->event.pressed) {
+    return handle_key_pressed(keycode, record);
   } else {
-    just_press_da_button = event_queue.size == 0;
-  }
-
-  if (just_press_da_button) {
-    empty_the_queue(false);
-    return true;
-  }
-  // shit's whack yo
-  register_key_event(keycode, record);
-  return false;
-}
-
-void matrix_scan_user(void) { // The very important timer.
-  if (event_queue.size) {
-    uint8_t index = event_queue.front;
-    key_event *event = &event_queue.elems[index];
-    if (timer_elapsed(event->time) > 100) {
-      // remove da front
-      event_queue.front = (index + 1) & QUEUE_MASK;
-      event_queue.size--;
-      // activate correct mod/layer
-      if (event->keycode == LTHUMB) {
-        layer_on(SYMBOLS);
-      } else {
-        register_mods(MOD_LSFT);
-      }
-      // empty da queue until next custom
-      empty_the_queue(true);
-    }
+    return handle_key_release(keycode, record);
   }
 }
 
@@ -225,19 +311,19 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
     [SYMBOLS] = {
         black, black, black, black, black,
-        black, green, green, yelow, black,
-        black, green, green, yelow, black,
-        black, green, green, yelow, black,
-        black, green, green, yelow, black,
-        black, green, green, yelow,
+        black, green, green, green, black,
+        black, green, green, green, black,
+        black, green, green, green, black,
+        black, green, green, green, black,
+        black, green, green, green,
         black, black, black, black, black, black, black,
 
         black, black, black, black, black,
-        black, green, green, yelow, black,
-        black, green, green, yelow, black,
-        black, green, green, yelow, black,
-        black, green, green, yelow, black,
-        black, green, green, yelow,
+        black, green, green, green, black,
+        black, green, green, green, black,
+        black, green, green, green, black,
+        black, green, green, green, black,
+        black, green, green, green,
         black, black, black, black, black, black, black
     },
 
