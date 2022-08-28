@@ -9,7 +9,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,     KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,      LCTL(KC_INSERT),       TG(5),     KC_Y,      KC_U,         KC_I,       KC_O,       KC_P,       KC_BSPACE,
     ESCAP,      KC_A,      KC_S,      KC_D,      KC_F,      KC_G,      LSFT(KC_INSERT),       KC_INSERT, KC_H,      KC_J,         KC_K,       KC_L,       KC_SCOLON,  KC_ENTER,
     KC_LSHIFT,  KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,                                        KC_N,      KC_M,         KC_COMMA,   KC_DOT,     KC_SLASH,   KC_GRAVE,
-    ________,   ________,   ________, MO(MEDIA), ________,  KC_PSCREEN,                                  TG(NUMPAD),MO(FUNCTIONS),________,   ________,   ________,   ________,
+    ________,   ________,   ________, MO(MEDIA), ________,  KC_PSCREEN,                                  TG(GAMING),MO(FUNCTIONS),________,   ________,   ________,   ________,
                                                  LTHUMB,    ________,  ________,              ________,  ________,  RTHUMB
   ),
   [SYMBOLS] = LAYOUT_moonlander(
@@ -85,37 +85,47 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
          case ESCAP:
              return 0;
         // fast switch layers + make sure combos still work
-        case LTHUMB:
-            return COMBO_TERM;
+        // case LTHUMB:
+        //     return COMBO_TERM;
         // prevent hold misfires
         default:
             return TAPPING_TERM;
     }
 }
 
-static void process_long_tap(uint16_t keycode, uint16_t expected_keycode, keyrecord_t *record, uint16_t *pressed_time, uint16_t long_press_keycode) {
+typedef struct {
+  bool pressed;
+  uint16_t pressed_time;
+} key_state;
+
+static void process_long_tap(uint16_t keycode, keyrecord_t *record, uint16_t expected_keycode, key_state *key_state, uint16_t long_press_keycode) {
   bool pressed = record->event.pressed;
   if (keycode == expected_keycode) {
     if (pressed) {
-      *pressed_time = 1 | record->event.time;
+      key_state->pressed = true;
+      key_state->pressed_time = record->event.time;
     } else {
-      if (*pressed_time && (record->event.time - *pressed_time) > get_tapping_term(keycode, record)) {
+      if (key_state->pressed && (record->event.time - key_state->pressed_time) > get_tapping_term(keycode, record)) {
         tap_code16(long_press_keycode);
       }
     }
   } else if (pressed) {
-    *pressed_time = 0;
+    key_state->pressed = false;
   }
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  static uint16_t lthumb_time = 0;
-  static uint16_t rthumb_time = 0;
-  static uint16_t escap_time  = 0;
-  process_long_tap(keycode, ESCAP,  record, &escap_time,  KC_ESCAPE);
-  process_long_tap(keycode, LTHUMB, record, &lthumb_time, KC_ESCAPE);
-  process_long_tap(keycode, RTHUMB, record, &rthumb_time, KC_SPACE);
-
+  int lay = biton32(layer_state);
+  if (lay == GAMING) {
+    // just game man
+    return true;
+  }
+  static key_state lthumb_state;
+  static key_state rthumb_state;
+  static key_state escap_state;
+  process_long_tap(keycode, record, ESCAP,  &escap_state,  KC_ESCAPE);
+  process_long_tap(keycode, record, LTHUMB, &lthumb_state, KC_ESCAPE);
+  process_long_tap(keycode, record, RTHUMB, &rthumb_state, KC_SPACE);
   return true;
 }
 
