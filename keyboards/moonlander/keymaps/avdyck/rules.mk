@@ -24,3 +24,4 @@ VPATH += keyboards/gboards
 CAPS_WORD_ENABLE = yes
 
 SRC = matrix.c
+SRC += keydefs.c

@@ -1,3 +1,6 @@
+#pragma once
+
+#include QMK_KEYBOARD_H
 
 enum LAYERS {
     QWERTY,
@@ -76,49 +79,16 @@ enum keys {
 #define SYM_M     KC_LCBR
 #define SYM_COMM  KC_GRV
 #define SYM_DOT   KC_RCBR
-#define SYM_SLSH  KC_NO
+#define SYM_SLSH  KC_SCLN
 
-uint16_t realcode(uint16_t keycode) {
-  switch (keycode) {
-    case LTHUMB: return KC_ESCAPE;
-    case RTHUMB: return KC_SPACE;
-    default:     return keycode;
-  }
-}
+typedef struct {
+  uint16_t keycode;
+  uint16_t shifted_keycode;
+} custom_shift_key_t;
 
-uint16_t sl(uint16_t keycode) {
-  switch (keycode) {
-    case KC_Q:   return SYM_Q;
-    case KC_W:   return SYM_W;
-    case KC_E:   return SYM_E;
-    case KC_R:   return SYM_R;
-    case KC_T:   return SYM_T;
-    case KC_Y:   return SYM_Y;
-    case KC_U:   return SYM_U;
-    case KC_I:   return SYM_I;
-    case KC_O:   return SYM_O;
-    case KC_P:   return SYM_P;
-    case KC_A:   return SYM_A;
-    case KC_S:   return SYM_S;
-    case KC_D:   return SYM_D;
-    case KC_F:   return SYM_F;
-    case KC_G:   return SYM_G;
-    case KC_H:   return SYM_H;
-    case KC_J:   return SYM_J;
-    case KC_K:   return SYM_K;
-    case KC_L:   return SYM_L;
-    case KC_SCLN:return SYM_SCLN;
-    case KC_Z:   return SYM_Z;
-    case KC_X:   return SYM_X;
-    case KC_C:   return SYM_C;
-    case KC_V:   return SYM_V;
-    case KC_B:   return SYM_B;
-    case KC_N:   return SYM_N;
-    case KC_M:   return SYM_M;
-    case KC_COMM:return SYM_COMM;
-    case KC_DOT: return SYM_DOT;
-    case KC_SLSH:return SYM_SLSH;
-    default:     return keycode;
-  }
-}
+extern const custom_shift_key_t custom_shift_keys[];
 
+uint16_t get_symbol_code(uint16_t keycode);
+
+void release_custom_shifted(void);
+bool press_custom_shifted(uint16_t keycode);

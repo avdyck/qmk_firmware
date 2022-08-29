@@ -122,11 +122,18 @@ void deactivate_rheld(void) {
 }
 
 void tap_key(uint16_t keycode) {
+  if (keycode == LTHUMB || keycode == RTHUMB) {
+    return;
+  }
   int lay = biton32(layer_state);
   if (lay == SYMBOLS) {
-    keycode = sl(keycode);
+    keycode = get_symbol_code(keycode);
   }
-  tap_code16(keycode);
+  if (!press_custom_shifted(keycode)) {
+    release_custom_shifted();
+  } else {
+    tap_code16(keycode);
+  }
 }
 
 void tap_queued_key(void) {
@@ -182,7 +189,7 @@ bool handle_key_pressed(uint16_t keycode, keyrecord_t *record) {
 
   // check if custom pressed but not held
   if (pressed_and_not_held(&lthumb_state) || pressed_and_not_held(&rthumb_state)) {
-    // add key to queue
+    // if yes: add key to queue instead of immediately handling it
     queued_key.active = true;
     queued_key.keycode = keycode;
     queued_key.pressed_time = record->event.time;
@@ -200,7 +207,7 @@ bool handle_key_pressed(uint16_t keycode, keyrecord_t *record) {
   }
 
   // normal-ass key press
-  return true;
+  return press_custom_shifted(keycode);
 }
 
 //  _______ _                          //
@@ -268,6 +275,7 @@ bool handle_key_release(uint16_t keycode, keyrecord_t *record) {
   }
 
   // normal-ass release
+  release_custom_shifted();
   return true;
 }
 
