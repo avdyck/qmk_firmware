@@ -1,3 +1,6 @@
+#pragma once
+
+#include QMK_KEYBOARD_H
 
 enum LAYERS {
     QWERTY,
@@ -12,7 +15,7 @@ enum LAYERS {
 #define ________     KC_TRANSPARENT
 #define LTHUMB       LT(SYMBOLS,  KC_ESCAPE)
 #define RTHUMB       MT(MOD_LSFT, KC_SPACE)
-#define ESCAP        LT(NAV, KC_ESCAPE)
+#define ESCAP        MO(NAV)
 #define ZOOMIN       LCTL(KC_PLUS)
 #define ZOOMOUT      LCTL(KC_MINUS)
 #define ZOOMNTR      LCTL(KC_0)
@@ -39,3 +42,47 @@ enum LAYERS {
 #define CombRA KC_K
 #define CombRS KC_L
 #define CombRG KC_SCOLON
+
+#define SYM_Q     KC_CIRC
+#define SYM_W     KC_MINS
+#define SYM_E     KC_TILD
+#define SYM_R     KC_PLUS
+#define SYM_T     KC_PERC
+#define SYM_Y     KC_HASH
+#define SYM_U     KC_LBRC
+#define SYM_I     KC_QUOT
+#define SYM_O     KC_RBRC
+#define SYM_P     KC_DLR
+
+#define SYM_A     KC_EXLM
+#define SYM_S     KC_LT
+#define SYM_D     KC_EQL
+#define SYM_F     KC_GT
+#define SYM_G     KC_PIPE
+#define SYM_H     KC_AMPR
+#define SYM_J     KC_LPRN
+#define SYM_K     KC_DQUO
+#define SYM_L     KC_RPRN
+#define SYM_SCLN  KC_BSLS
+
+#define SYM_Z     KC_NO
+#define SYM_X     KC_ASTR
+#define SYM_C     KC_NO
+#define SYM_V     KC_SLSH
+#define SYM_B     KC_NO
+#define SYM_N     KC_NO
+#define SYM_M     KC_LCBR
+#define SYM_COMM  KC_GRV
+#define SYM_DOT   KC_RCBR
+#define SYM_SLSH  KC_SCLN
+
+typedef struct {
+  uint16_t keycode;
+  uint16_t shifted_keycode;
+} custom_shift_key_t;
+
+extern const custom_shift_key_t custom_shift_keys[];
+
+uint16_t get_symbol_code(uint16_t keycode);
+
+bool process_custom_shift_keys(uint16_t keycode, keyrecord_t *record);
