@@ -1,18 +1,53 @@
 #include "keydefs.h"
 
 const custom_shift_key_t custom_shift_keys[] = {
-  {KC_DOT,  KC_AT},
+  {KC_DOT,  KC_AT  },
   {KC_COMM, KC_UNDS},
-  {SYM_Q,   KC_4},
-  {SYM_W,   KC_0},
-  {SYM_E,   KC_1},
-  {SYM_R,   KC_2},
-  {SYM_T,   KC_3},
-  {SYM_Y,   KC_7},
-  {SYM_U,   KC_6},
-  {SYM_I,   KC_5},
-  {SYM_O,   KC_9},
-  {SYM_P,   KC_8},
+  {KC_COLN, KC_SCLN},
+
+  {SYM_Q,   SYM_Q  },
+  {SYM_W,   SYM_W  },
+  {SYM_E,   SYM_E  },
+  {SYM_R,   SYM_R  },
+  {SYM_T,   SYM_T  },
+  {SYM_Y,   SYM_Y  },
+  {SYM_U,   SYM_U  },
+  {SYM_I,   SYM_I  },
+  {SYM_O,   SYM_O  },
+  {SYM_P,   SYM_P  },
+
+  {SYM_A,   SYM_A   },
+  {SYM_S,   SYM_S   },
+  {SYM_D,   SYM_D   },
+  {SYM_F,   SYM_F   },
+  {SYM_G,   SYM_G   },
+  {SYM_H,   SYM_H   },
+  {SYM_J,   SYM_J   },
+  {SYM_K,   SYM_K   },
+  {SYM_L,   SYM_L   },
+  {SYM_SCLN,SYM_SCLN},
+
+  {SYM_Z,   SYM_Z   },
+  {SYM_X,   SYM_X   },
+  {SYM_C,   SYM_C   },
+  {SYM_V,   SYM_V   },
+  {SYM_B,   SYM_B   },
+  {SYM_N,   SYM_N   },
+  {SYM_M,   SYM_M   },
+  {SYM_COMM,SYM_COMM},
+  {SYM_DOT, SYM_DOT },
+  {SYM_SLSH,SYM_SLSH},
+
+  {KC_0,    KC_0},
+  {KC_1,    KC_1},
+  {KC_2,    KC_2},
+  {KC_3,    KC_3},
+  {KC_4,    KC_4},
+  {KC_5,    KC_5},
+  {KC_6,    KC_6},
+  {KC_7,    KC_7},
+  {KC_8,    KC_8},
+  {KC_9,    KC_9},
 };
 
 uint16_t get_symbol_code(uint16_t keycode) {
@@ -52,35 +87,47 @@ uint16_t get_symbol_code(uint16_t keycode) {
 }
 uint8_t NUM_CUSTOM_SHIFT_KEYS = sizeof(custom_shift_keys) / sizeof(custom_shift_key_t);
 
-static uint16_t registered_keycode = KC_NO;
+bool process_custom_shift_keys(uint16_t keycode, keyrecord_t *record) {
+  static uint16_t registered_keycode = KC_NO;
 
-void release_custom_shifted(void) {
+  // If a custom shift key is registered, then this event is either
+  // releasing it or manipulating another key at the same time. Either way,
+  // we release the currently registered key.
   if (registered_keycode != KC_NO) {
     unregister_code16(registered_keycode);
     registered_keycode = KC_NO;
   }
-}
 
-bool press_custom_shifted(uint16_t keycode) {
-  // release previous
-  release_custom_shifted();
-
-  // check if shifted in the first place
-  const uint8_t mods = get_mods();
-  if (!((mods | get_weak_mods()) & MOD_MASK_SHIFT)) {
+  if (!record->event.pressed) {
     return true;
   }
 
-  for (int i = 0; i < NUM_CUSTOM_SHIFT_KEYS; ++i) {
-    if (keycode == custom_shift_keys[i].keycode) {
-      del_mods(MOD_MASK_SHIFT);
-      del_weak_mods(MOD_MASK_SHIFT);
-      registered_keycode = custom_shift_keys[i].shifted_keycode;
-      register_code16(registered_keycode);
-      set_mods(mods);
-      return false;
+  const uint8_t mods = get_mods();
+  if ((mods | get_weak_mods()) & MOD_MASK_SHIFT) {  // Shift is held.
+    // Search for a custom key with keycode equal to `keycode`.
+    for (int i = 0; i < NUM_CUSTOM_SHIFT_KEYS; ++i) {
+      if (keycode == custom_shift_keys[i].keycode) {
+        // Continue default handling if this is a tap-hold key being held.
+        if (((QK_MOD_TAP <= keycode && keycode <= QK_MOD_TAP_MAX) ||
+             (QK_LAYER_TAP <= keycode && keycode <= QK_LAYER_TAP_MAX)) &&
+            record->tap.count == 0) {
+          return true;
+        }
+        del_mods(MOD_MASK_SHIFT);
+        del_weak_mods(MOD_MASK_SHIFT);
+        send_keyboard_report();
+        registered_keycode = custom_shift_keys[i].shifted_keycode;
+        register_code16(registered_keycode);
+        set_mods(mods);  // Restore the mods.
+        return false;
+      }
     }
   }
 
-  return true;
+  return true;  // Continue with default handling.
 }
+
+
+
+
+

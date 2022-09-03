@@ -12,14 +12,9 @@ enum LAYERS {
     GAMING
 };
 
-enum keys {
-    CUSTOM_1 = SAFE_RANGE,
-    CUSTOM_2
-};
-
 #define ________     KC_TRANSPARENT
-#define LTHUMB       CUSTOM_1
-#define RTHUMB       CUSTOM_2
+#define LTHUMB       LT(SYMBOLS,  KC_ESCAPE)
+#define RTHUMB       MT(MOD_LSFT, KC_SPACE)
 #define ESCAP        MO(NAV)
 #define ZOOMIN       LCTL(KC_PLUS)
 #define ZOOMOUT      LCTL(KC_MINUS)
@@ -90,5 +85,4 @@ extern const custom_shift_key_t custom_shift_keys[];
 
 uint16_t get_symbol_code(uint16_t keycode);
 
-void release_custom_shifted(void);
-bool press_custom_shifted(uint16_t keycode);
+bool process_custom_shift_keys(uint16_t keycode, keyrecord_t *record);
