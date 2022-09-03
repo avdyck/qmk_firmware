@@ -25,3 +25,4 @@ CAPS_WORD_ENABLE = yes
 
 SRC = matrix.c
 SRC += keydefs.c
+SRC += ledmap.c

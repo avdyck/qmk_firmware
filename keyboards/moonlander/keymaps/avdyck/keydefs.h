@@ -76,13 +76,6 @@ enum LAYERS {
 #define SYM_DOT   KC_RCBR
 #define SYM_SLSH  KC_SCLN
 
-typedef struct {
-  uint16_t keycode;
-  uint16_t shifted_keycode;
-} custom_shift_key_t;
-
-extern const custom_shift_key_t custom_shift_keys[];
-
 uint16_t get_symbol_code(uint16_t keycode);
 
 bool process_custom_shift_keys(uint16_t keycode, keyrecord_t *record);
