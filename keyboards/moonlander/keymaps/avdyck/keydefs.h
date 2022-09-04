@@ -44,7 +44,7 @@ enum LAYERS {
 #define CombRS KC_L
 #define CombRG KC_SCOLON
 
-#define SYM_Q     KC_CIRC
+#define SYM_Q     KC_NO
 #define SYM_W     KC_MINS
 #define SYM_E     KC_TILD
 #define SYM_R     KC_PLUS
@@ -53,7 +53,7 @@ enum LAYERS {
 #define SYM_U     KC_LBRC
 #define SYM_I     KC_QUOT
 #define SYM_O     KC_RBRC
-#define SYM_P     KC_DLR
+#define SYM_P     KC_NO
 
 #define SYM_A     KC_EXLM
 #define SYM_S     KC_LT
@@ -70,8 +70,8 @@ enum LAYERS {
 #define SYM_X     KC_ASTR
 #define SYM_C     KC_NO
 #define SYM_V     KC_SLSH
-#define SYM_B     KC_NO
-#define SYM_N     KC_NO
+#define SYM_B     KC_CIRC
+#define SYM_N     KC_DLR
 #define SYM_M     KC_LCBR
 #define SYM_COMM  KC_GRV
 #define SYM_DOT   KC_RCBR
