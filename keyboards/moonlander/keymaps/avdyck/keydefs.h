@@ -16,9 +16,6 @@ enum LAYERS {
 #define LTHUMB       MT(MOD_LCTL, KC_SPACE)
 #define RTHUMB       OSM(MOD_LSFT)
 #define ESCAP        LT(NAV,      KC_ESCAPE)
-#define ZOOMIN       LCTL(KC_PLUS)
-#define ZOOMOUT      LCTL(KC_MINUS)
-#define ZOOMNTR      LCTL(KC_0)
 #define M_PREV       KC_MEDIA_PREV_TRACK
 #define M_NEXT       KC_MEDIA_NEXT_TRACK
 #define M_PLAY       KC_MEDIA_PLAY_PAUSE
