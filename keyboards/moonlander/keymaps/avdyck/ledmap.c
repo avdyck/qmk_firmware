@@ -30,7 +30,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         black, white, white, white, black, black, white
     },
 
-    [XPUOQ] = {
+    [BROLMAK] = {
         black, white, white, white, black,
         black, bluee, bluee, bluee, black,
         black, bluee, bluee, bluee, black,

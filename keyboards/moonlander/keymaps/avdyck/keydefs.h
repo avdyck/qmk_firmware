@@ -4,7 +4,7 @@
 
 enum LAYERS {
     QWERTY,
-    XPUOQ,
+    BROLMAK,
     SYMBOLS,
     NAV,
     FUNCTIONS,
