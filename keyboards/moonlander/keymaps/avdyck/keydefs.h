@@ -14,7 +14,7 @@ enum LAYERS {
 };
 
 #define LTHUMB       MT(MOD_LCTL, KC_SPACE)
-#define RTHUMB       MT(MOD_LSFT, KC_ESCAPE)
+#define RTHUMB       OSM(MOD_LSFT)
 #define ESCAP        LT(NAV,      KC_ESCAPE)
 #define ZOOMIN       LCTL(KC_PLUS)
 #define ZOOMOUT      LCTL(KC_MINUS)

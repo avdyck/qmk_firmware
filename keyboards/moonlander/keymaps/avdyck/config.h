@@ -9,15 +9,11 @@
 #define TAPPING_TERM 175
 #define TAPPING_TERM_PER_KEY
 #define IGNORE_MOD_TAP_INTERRUPT
-#define TAPPING_FORCE_HOLD
+#define TAPPING_FORCE_HOLD       /* C-Down F-down F-up -> always C-F even if within tapping term. */
 
-#define RETRO_TAPPING
-#define RETRO_TAPPING_PER_KEY
-
-#define COMBO_TERM 45
-#define COMBO_TERM_PER_COMBO
-#define COMBO_MUST_HOLD_MODS
-#define COMBO_HOLD_TERM 100
+// oneshot mods (shift)
+#define ONESHOT_TAP_TOGGLE 3     /* Tapping this number of times holds the key until tapped once again. */
+#define ONESHOT_TIMEOUT 500      /* Time (in ms) before the one shot key is released */
 
 #undef RGB_DISABLE_TIMEOUT
 #define RGB_DISABLE_TIMEOUT 300000
