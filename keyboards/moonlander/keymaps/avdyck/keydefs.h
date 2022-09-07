@@ -4,19 +4,18 @@
 
 enum LAYERS {
     QWERTY,
-    BROLMAK,
-    SYMBOLS,
+    BLMK,
+    SYM,
     NAV,
-    FUNCTIONS,
-    MEDIA,
-    NUMPAD,
-    GAMING
+    FUNC,
+    MDIA,
+    NUM,
+    GMNG
 };
 
-#define ________     KC_TRANSPARENT
-#define LTHUMB       LT(SYMBOLS,  KC_ESCAPE)
-#define RTHUMB       MT(MOD_LSFT, KC_SPACE)
-#define ESCAP        MO(NAV)
+#define LTHUMB       MT(MOD_LCTL, KC_SPACE)
+#define RTHUMB       MT(MOD_LSFT, KC_ESCAPE)
+#define ESCAP        LT(NAV,      KC_ESCAPE)
 #define ZOOMIN       LCTL(KC_PLUS)
 #define ZOOMOUT      LCTL(KC_MINUS)
 #define ZOOMNTR      LCTL(KC_0)

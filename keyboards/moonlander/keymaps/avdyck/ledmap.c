@@ -15,22 +15,22 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [QWERTY] = {
         black, white, white, white, black,
         black, bluee, bluee, bluee, black,
-        black, bluee, bluee, bluee, black,
         black, bluee, bluee, bluee, dblue,
-        black, bluee, bluee, bluee, white,
+        black, bluee, bluee, bluee, yelow,
+        black, bluee, bluee, bluee, yelow,
         black, bluee, bluee, bluee,
-        black, white, white, green, black, black, white,
+        black, white, white, yelow, black, black, white,
 
         black, white, white, white, black,
         black, bluee, white, white, black,
         black, bluee, bluee, white, black,
-        black, bluee, bluee, white, black,
-        black, bluee, bluee, bluee, purpl,
+        black, bluee, bluee, white, purpl,
+        black, bluee, bluee, bluee, black,
         black, bluee, bluee, bluee,
-        black, white, white, white, black, black, white
+        black, white, white, bluee, black, black, white
     },
 
-    [BROLMAK] = {
+    [BLMK] = {
         black, white, white, white, black,
         black, bluee, bluee, bluee, black,
         black, bluee, bluee, bluee, black,
@@ -48,7 +48,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         black, white, white, white, black, black, white
     },
 
-    [SYMBOLS] = {
+    [SYM] = {
         black, black, black, black, black,
         black, green, green, green, black,
         black, green, green, green, black,
@@ -84,7 +84,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         black, black, black, black, black, black, black
     },
 
-    [FUNCTIONS] = {
+    [FUNC] = {
         black, black, black, black, black,
         black, black, black, black, black,
         black, black, black, black, black,
@@ -102,12 +102,12 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         black, black, black, black, black, black, black
     },
 
-    [MEDIA] = {
+    [MDIA] = {
         reddd, black, black, black, black,
-        black, black, black, black, black,
         black, reddd, purpl, reddd, black,
         black, purpl, purpl, purpl, black,
         black, reddd, purpl, reddd, black,
+        black, black, black, black, black,
         black, black, black, black,
         black, black, black, black, black, black, black,
 
@@ -120,7 +120,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         black, black, black, black, black, black, black
     },
 
-    [NUMPAD] = {
+    [NUM] = {
         black, black, black, black, black,
         black, black, black, black, black,
         black, black, black, black, black,
@@ -138,7 +138,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         black, black, black, black, black, black, black
     },
 
-    [GAMING] = {
+    [GMNG] = {
         black, white, white, white, white,
         bluee, white, reddd, white, white,
         bluee, reddd, reddd, white, black,
@@ -177,7 +177,7 @@ void set_layer_color(int layer) {
 void rgb_matrix_indicators_user(void) {
   if (keyboard_config.disable_layer_led) { return; }
   int lay = biton32(layer_state);
-  if (lay <= GAMING) {
+  if (lay <= GMNG) {
     set_layer_color(lay);
   } else if (rgb_matrix_get_flags() == LED_FLAG_NONE) {
     rgb_matrix_set_color_all(0, 0, 0);
