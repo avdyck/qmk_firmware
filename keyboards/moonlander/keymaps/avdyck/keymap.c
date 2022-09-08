@@ -2,21 +2,22 @@
 #include "version.h"
 #include "keydefs.h"
 #include "ledmap.h"
+//#include "g/keymap_combo.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [QWERTY] = LAYOUT_moonlander(
     KC_DEL,   KC_4,     KC_0,     KC_1,     KC_2,     KC_3,     _______,             TG(BLMK), KC_7,     KC_6,     KC_5,     KC_9,     KC_8,     _______,
     KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     C(KC_INS),           TG(NUM),  KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC,
     ESCAP,    KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     S(KC_INS),           KC_INS,   KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_ENT,
-    KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                                    KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  _______,
-    _______,  _______,  MO(MDIA), KC_LGUI,  KC_LALT,  KC_PSCR,                                 TG(GMNG), MO(SYM),  MO(FUNC), _______,  _______,  _______,
-                                            LTHUMB,   _______,  _______,             _______,  _______,  RTHUMB
+    KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                                    KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,
+    _______,  _______,  LTHUMB4,  LTHUMB3,  LTHUMB2,  KC_PSCR,                                 TG(GMNG), RTHUMB2,  RTHUMB3,  RTHUMB4,  _______,  _______,
+                                            LTHUMB1,  _______,  _______,             _______,  _______,  RTHUMB1
   ),
   [BLMK] = LAYOUT_moonlander(
     _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  KC_X,     KC_G,     KC_L,     KC_B,     KC_V,     _______,             _______,  KC_Q,     KC_F,     KC_U,     KC_O,     KC_Y,     _______,
-    _______,  KC_M,     KC_S,     KC_R,     KC_T,     KC_P,     _______,             _______,  KC_K,     KC_N,     KC_E,     KC_A,     KC_I,     _______,
-    _______,  KC_C,     KC_W,     KC_J,     KC_D,     KC_Z,                                    KC_SCLN,  KC_H,     KC_COMM,  KC_DOT,   KC_SLSH,  _______,
+    _______,  KC_Q,     KC_L,     KC_M,     KC_P,     KC_Z,     _______,             _______,  KC_Y,     KC_F,     KC_O,     KC_U,     KC_SCLN,  _______,
+    _______,  KC_C,     KC_R,     KC_S,     KC_T,     KC_K,     _______,             _______,  KC_J,     KC_N,     KC_A,     KC_E,     KC_I,     _______,
+    _______,  KC_V,     KC_W,     KC_G,     KC_D,     KC_B,                                    KC_X,     KC_H,     KC_COMM,  KC_DOT,   KC_SLSH,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,                                 _______,  _______,  _______,  _______,  _______,  _______,
                                             _______,  _______,  _______,             _______,  _______,  _______
   ),
@@ -57,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  _______,  KC_P7,    KC_P8,    KC_P9,    KC_PMNS,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  _______,  KC_P4,    KC_P5,    KC_P6,    KC_PPLS,  _______,
     _______,  _______,  _______,  _______,  _______,  _______,                                 _______,  KC_P1,    KC_P2,    KC_P3,    KC_PENT,  _______,
-    _______,  _______,  _______,  _______,  _______,  _______,                                 _______,  KC_P0,    _______,  KC_PDOT,  KC_PENT,  _______,
+    _______,  _______,  _______,  _______,  _______,  _______,                                 _______,  KC_P0,    KC_PDOT,  _______,  KC_PENT,  _______,
                                             _______,  _______,  _______,             _______,  _______,  _______
   ),
   [GMNG] = LAYOUT_moonlander(
@@ -94,7 +95,9 @@ static void process_long_tap(bool matching_keycode, keyrecord_t *record, bool *p
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (!process_custom_shift_keys(keycode, record)) { return false; }
   static bool escap_state = false;
-  process_long_tap(keycode == ESCAP,  record, &escap_state,  KC_ESCAPE);
+  static bool lthumb1_state = false;
+  process_long_tap(keycode == ESCAP,   record, &escap_state,   KC_ESCAPE);
+  process_long_tap(keycode == LTHUMB1, record, &lthumb1_state, KC_ESCAPE);
 
   return true;
 }
@@ -102,8 +105,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case ESCAP:
+        case LTHUMB1:
             return 0;
         default:
             return TAPPING_TERM;
     }
 }
+
+//uint16_t get_combo_term(uint16_t index, combo_t *combo) {
+//    switch (combo->keys[0]) {
+//        case LTHUMB1:
+//        case RTHUMB1:
+//            return COMBO_TERM;
+//        default:
+//            // non-thumb combos have to be faster cause of typos
+//            return 30;
+//    }
+//}

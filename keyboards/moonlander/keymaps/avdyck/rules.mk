@@ -16,6 +16,10 @@ MAGIC_ENABLE = no
 EXTRAKEY_ENABLE = yes
 DYNAMIC_MACRO_ENABLE = yes
 
+# # combos
+# COMBO_ENABLE = yes
+# VPATH += keyboards/gboards
+
 # caps word
 CAPS_WORD_ENABLE = no
 
