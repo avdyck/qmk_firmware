@@ -13,19 +13,19 @@
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [QWERTY] = {
-        black, white, white, white, black,
+        black, white, reddd, white, black,
         black, bluee, bluee, bluee, black,
         black, bluee, bluee, bluee, dblue,
-        black, bluee, bluee, bluee, yelow,
-        black, bluee, bluee, bluee, yelow,
+        black, bluee, bluee, bluee, black,
+        black, bluee, bluee, bluee, green,
         black, bluee, bluee, bluee,
-        black, white, white, green, black, black, white,
+        black, white, white, white, black, black, white,
 
         black, white, white, white, black,
         black, bluee, white, white, black,
         black, bluee, bluee, white, dblue,
-        black, bluee, bluee, white, purpl,
-        black, bluee, bluee, bluee, yelow,
+        black, bluee, bluee, white, black,
+        black, bluee, bluee, bluee, reddd,
         black, bluee, bluee, bluee,
         black, white, white, white, black, black, white
     },
@@ -69,10 +69,10 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [NAV] = {
         black, black, black, black, black,
         black, black, black, black, black,
-        black, black, black, black, black,
-        black, black, black, black, black,
-        black, black, black, black, black,
-        black, black, black, black,
+        black, purpl, purpl, purpl, black,
+        black, purpl, purpl, purpl, black,
+        black, purpl, purpl, purpl, black,
+        black, purpl, purpl, purpl,
         black, black, black, black, black, black, black,
 
         black, black, black, black, black,
@@ -81,24 +81,6 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         black, reddd, reddd, reddd, black,
         black, reddd, reddd, reddd, black,
         black, black, reddd, reddd,
-        black, black, black, black, black, black, black
-    },
-
-    [FUNC] = {
-        black, black, black, black, black,
-        black, black, black, black, black,
-        black, black, black, black, black,
-        black, black, black, black, black,
-        black, black, black, black, black,
-        black, black, black, black,
-        black, black, black, black, black, black, black,
-
-        black, black, black, black, black,
-        black, black, black, black, black,
-        black, purpl, purpl, purpl, black,
-        black, purpl, purpl, purpl, black,
-        black, purpl, purpl, purpl, black,
-        black, purpl, purpl, purpl,
         black, black, black, black, black, black, black
     },
 
