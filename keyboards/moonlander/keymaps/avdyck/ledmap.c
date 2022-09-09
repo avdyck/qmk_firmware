@@ -16,16 +16,16 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         black, white, reddd, white, black,
         black, bluee, bluee, bluee, black,
         black, bluee, bluee, bluee, dblue,
-        black, bluee, bluee, bluee, black,
-        black, bluee, bluee, bluee, green,
+        black, bluee, bluee, bluee, yelow,
+        black, bluee, bluee, bluee, yelow,
         black, bluee, bluee, bluee,
-        black, white, white, white, black, black, white,
+        black, white, white, green, black, black, white,
 
         black, white, white, white, black,
         black, bluee, white, white, black,
         black, bluee, bluee, white, dblue,
-        black, bluee, bluee, white, black,
-        black, bluee, bluee, bluee, reddd,
+        black, bluee, bluee, white, yelow,
+        black, bluee, bluee, bluee, yelow,
         black, bluee, bluee, bluee,
         black, white, white, white, black, black, white
     },
@@ -50,7 +50,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
     [SYM] = {
         black, black, black, black, black,
-        black, green, green, green, black,
+        black, black, green, green, black,
         black, green, green, green, black,
         black, green, green, green, black,
         black, green, green, green, black,
@@ -58,7 +58,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         black, black, black, black, black, black, black,
 
         black, black, black, black, black,
-        black, green, green, green, black,
+        black, black, green, green, black,
         black, green, green, green, black,
         black, green, green, green, black,
         black, green, green, green, black,
@@ -77,10 +77,10 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
         black, black, black, black, black,
         black, black, black, black, black,
-        black, black, reddd, reddd, black,
+        black, black, reddd, black, black,
         black, reddd, reddd, reddd, black,
         black, reddd, reddd, reddd, black,
-        black, black, reddd, reddd,
+        black, black, reddd, black,
         black, black, black, black, black, black, black
     },
 

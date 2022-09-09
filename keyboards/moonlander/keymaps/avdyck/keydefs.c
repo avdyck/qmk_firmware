@@ -6,9 +6,10 @@ typedef struct {
 } custom_shift_key_t;
 
 const custom_shift_key_t custom_shift_keys[] = {
-  {KC_DOT,    KC_AT  },
+  {KC_DOT,    KC_AT},
   {KC_COMM,   KC_UNDS},
   {KC_SCLN,   KC_COLN},
+  {KC_SPC,    KC_TAB},
 
   {KC_0,      KC_0},
   {KC_1,      KC_1},
