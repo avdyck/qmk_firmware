@@ -15,9 +15,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [BLMK] = LAYOUT_moonlander(
         _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  _______,  _______,  _______,  _______,  _______,  _______,
-        _______,  KC_Q,     KC_L,     KC_M,     KC_P,     KC_Z,     _______,             _______,  KC_Y,     KC_F,     KC_O,     KC_U,     KC_SCLN,  _______,
-        _______,  KC_C,     KC_R,     KC_S,     KC_T,     KC_K,     _______,             _______,  KC_J,     KC_N,     KC_A,     KC_E,     KC_I,     _______,
-        _______,  KC_V,     KC_W,     KC_G,     KC_D,     KC_B,                                    KC_X,     KC_H,     KC_COMM,  KC_DOT,   KC_SLSH,  _______,
+        _______,  KC_Z,     KC_M,     KC_L,     KC_P,     KC_X,     _______,             _______,  KC_Y,     KC_F,     KC_U,     KC_O,     KC_SCLN,  _______,
+        _______,  KC_G,     KC_S,     KC_R,     KC_T,     KC_K,     _______,             _______,  KC_J,     KC_N,     KC_E,     KC_A,     KC_I,     _______,
+        _______,  KC_C,     KC_V,     KC_W,     KC_D,     KC_B,                                    KC_Q,     KC_H,     KC_COMM,  KC_DOT,   KC_SLSH,  _______,
         _______,  _______,  _______,  _______,  _______,  _______,                                 _______,  _______,  _______,  _______,  _______,  _______,
                                                 _______,  _______,  _______,             _______,  _______,  _______
     ),
@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  _______,  _______,  _______,  _______,  _______,  _______,
         _______,  _______,  KC_F9,    KC_F8,    KC_F7,    KC_F10,   _______,             _______,  _______,  KC_HOME,  KC_END,   _______,  _______,  _______,
         _______,  _______,  KC_F6,    KC_F5,    KC_F4,    KC_F11,   _______,             _______,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT, _______,  _______,
-        _______,  _______,  KC_F3,    KC_F2,    KC_F1,    KC_F12,                                  _______,  KC_PGDN,  KC_PGUP,  _______,  _______,  _______,
+        _______,  _______,  KC_F3,    KC_F2,    KC_F1,    KC_F12,                                  CG_LEFT,  KC_PGDN,  KC_PGUP,  CG_RIGHT, _______,  _______,
         _______,  _______,  _______,  _______,  _______,  _______,                                 _______,  _______,  _______,  _______,  _______,  _______,
                                                 _______,  _______,  _______,             _______,  _______,  _______
     ),
@@ -97,13 +97,23 @@ static void process_long_tap(uint16_t keycode, keyrecord_t *record, key_state *s
     }
 }
 
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case ESCAP:
+        case RTHUMB1:
+            return 0;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_custom_shift_keys(keycode, record)) { return false; }
 
     static key_state escap_state = { .hold_code = ESCAP,   .tap_code = KC_ESCAPE };
-    static key_state thumb_state = { .hold_code = LTHUMB1, .tap_code = KC_ESCAPE };
+//    static key_state thumb_state = { .hold_code = RTHUMB1, .tap_code = KC_ESCAPE };
     process_long_tap(keycode, record, &escap_state);
-    process_long_tap(keycode, record, &thumb_state);
+//    process_long_tap(keycode, record, &thumb_state);
     return true;
 }
 
@@ -118,13 +128,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 ////            return 30;
 ////    }
 //}
-
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case ESCAP:
-        case LTHUMB1:
-            return 0;
-        default:
-            return TAPPING_TERM;
-    }
-}

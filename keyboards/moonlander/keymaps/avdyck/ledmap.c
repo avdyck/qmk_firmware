@@ -13,39 +13,39 @@
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [QWERTY] = {
-        black, white, reddd, white, black,
-        black, bluee, bluee, bluee, black,
-        black, bluee, bluee, bluee, dblue,
-        black, bluee, bluee, bluee, yelow,
-        black, bluee, bluee, bluee, yelow,
-        black, bluee, bluee, bluee,
-        black, white, white, green, black, black, white,
+        white, white, green, white, black,
+        white, bluee, bluee, bluee, black,
+        white, bluee, bluee, bluee, dblue,
+        white, bluee, bluee, bluee, yelow,
+        white, bluee, bluee, bluee, yelow,
+        white, bluee, bluee, bluee,
+        white, white, white, reddd, black, black, white,
 
-        black, white, white, white, black,
-        black, bluee, white, white, black,
-        black, bluee, bluee, white, dblue,
-        black, bluee, bluee, white, yelow,
-        black, bluee, bluee, bluee, yelow,
-        black, bluee, bluee, bluee,
-        black, white, white, white, black, black, white
+        white, white, white, white, black,
+        white, bluee, white, white, black,
+        white, bluee, bluee, white, dblue,
+        white, bluee, bluee, white, yelow,
+        white, bluee, bluee, bluee, yelow,
+        white, bluee, bluee, bluee,
+        white, white, white, white, black, black, white
     },
 
     [BLMK] = {
         black, white, white, white, black,
         black, bluee, bluee, bluee, black,
         black, bluee, bluee, bluee, black,
-        black, bluee, bluee, bluee, dblue,
-        black, bluee, bluee, bluee, white,
+        black, bluee, bluee, bluee, black,
+        black, bluee, bluee, bluee, black,
         black, bluee, bluee, bluee,
-        black, white, white, green, black, black, white,
+        black, black, black, black, black, black, black,
 
         black, white, white, white, black,
         black, bluee, bluee, white, black,
         black, bluee, bluee, white, black,
         black, bluee, bluee, white, black,
-        black, bluee, bluee, bluee, purpl,
-        black, bluee, bluee, white,
-        black, white, white, white, black, black, white
+        black, bluee, bluee, bluee, black,
+        black, bluee, bluee, black,
+        black, black, black, black, black, black, black
     },
 
     [SYM] = {

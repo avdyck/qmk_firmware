@@ -12,14 +12,14 @@ enum LAYERS {
     GMNG
 };
 
-#define ESCAP        MO(NAV)
+#define ESCAP        MO(SYM)
 
-#define LTHUMB1      MO(SYM)
+#define LTHUMB1      LT(NAV, KC_SPACE)
 #define LTHUMB2      KC_LCTL
 #define LTHUMB3      KC_LALT
 #define LTHUMB4      MO(MDIA)
 
-#define RTHUMB1      KC_SPC
+#define RTHUMB1      MT(MOD_LSFT, KC_NO)
 #define RTHUMB2      KC_LALT
 #define RTHUMB3      KC_LGUI
 #define RTHUMB4      TG(NUM)
