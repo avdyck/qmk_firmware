@@ -13,39 +13,39 @@
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [QWERTY] = {
-        white, white, green, white, black,
+        white, white, reddd, white, black,
         white, bluee, bluee, bluee, black,
         white, bluee, bluee, bluee, dblue,
         white, bluee, bluee, bluee, yelow,
         white, bluee, bluee, bluee, yelow,
         white, bluee, bluee, bluee,
-        white, white, white, reddd, black, black, white,
+        white, white, white, yelow, black, black, white,
 
-        white, white, white, white, black,
+        white, white, green, white, black,
         white, bluee, white, white, black,
         white, bluee, bluee, white, dblue,
         white, bluee, bluee, white, yelow,
-        white, bluee, bluee, bluee, yelow,
+        white, bluee, bluee, bluee, green,
         white, bluee, bluee, bluee,
         white, white, white, white, black, black, white
     },
 
-    [BLMK] = {
-        black, white, white, white, black,
+    [YPUOQ] = {
+        black, black, reddd, black, black,
         black, bluee, bluee, bluee, black,
-        black, bluee, bluee, bluee, black,
-        black, bluee, bluee, bluee, black,
-        black, bluee, bluee, bluee, black,
+        black, bluee, bluee, bluee, dblue,
+        black, bluee, bluee, bluee, yelow,
+        black, bluee, bluee, bluee, yelow,
         black, bluee, bluee, bluee,
-        black, black, black, black, black, black, black,
+        black, black, black, yelow, black, black, black,
 
-        black, white, white, white, black,
-        black, bluee, bluee, white, black,
-        black, bluee, bluee, white, black,
-        black, bluee, bluee, white, black,
-        black, bluee, bluee, bluee, black,
-        black, bluee, bluee, black,
-        black, black, black, black, black, black, black
+        black, black, green, black, black,
+        black, bluee, white, white, black,
+        black, bluee, bluee, white, dblue,
+        black, bluee, bluee, white, yelow,
+        black, bluee, bluee, bluee, green,
+        black, bluee, bluee, bluee,
+        black, black, black, white, black, black, black
     },
 
     [SYM] = {
@@ -77,10 +77,10 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
         black, black, black, black, black,
         black, black, black, black, black,
-        black, black, reddd, black, black,
         black, reddd, reddd, reddd, black,
         black, reddd, reddd, reddd, black,
-        black, black, reddd, black,
+        black, reddd, reddd, reddd, black,
+        black, reddd, reddd, reddd,
         black, black, black, black, black, black, black
     },
 
