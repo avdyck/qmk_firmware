@@ -9,7 +9,7 @@
 #define TAPPING_TERM 175
 #define TAPPING_TERM_PER_KEY
 #define IGNORE_MOD_TAP_INTERRUPT
-#define TAPPING_FORCE_HOLD       /* C-Down F-down F-up -> always C-F even if within tapping term. */
+//#define TAPPING_FORCE_HOLD       /* C-Down F-down F-up -> always C-F even if within tapping term. */
 
 #define COMBO_TERM 50
 #define COMBO_TERM_PER_COMBO
