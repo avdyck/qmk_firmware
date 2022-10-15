@@ -8,7 +8,6 @@ enum LAYERS {
     SYM,
     NAV,
     MDIA,
-    NUM,
     GMNG
 };
 
@@ -20,7 +19,7 @@ enum LAYERS {
 #define RTHUMB1      KC_SPACE
 #define RTHUMB2      MO(NAV)
 #define RTHUMB3      KC_LGUI
-#define RTHUMB4      TG(NUM)
+#define RTHUMB4      TG(SYM)
 
 #define TABBB        KC_DEL
 #define ESCAP        KC_TAB
@@ -40,6 +39,64 @@ enum LAYERS {
 #define MAC_REC1     DYN_REC_START1
 #define MAC_STOP     DYN_REC_STOP
 #define MAC_PLAY1    DYN_MACRO_PLAY1
+
+// qwerty bindings
+#define  QW_Q     KC_Q
+#define  QW_A     MT(MOD_LGUI, KC_A)
+#define  QW_Z     KC_Z
+
+#define  QW_W     KC_W
+#define  QW_S     MT(MOD_LSFT, KC_S)
+#define  QW_X     KC_X
+
+#define  QW_E     KC_E
+#define  QW_D     MT(MOD_LALT, KC_D)
+#define  QW_C     KC_C
+
+#define  QW_R     KC_R
+#define  QW_F     MT(MOD_LCTL, KC_F)
+#define  QW_V     KC_V
+
+#define  QW_T     KC_T
+#define  QW_G     KC_G
+#define  QW_B     KC_B
+
+#define  QW_Y     KC_Y
+#define  QW_H     KC_H
+#define  QW_N     KC_N
+
+#define  QW_U     KC_U
+#define  QW_J     MT(MOD_RCTL, KC_J)
+#define  QW_M     KC_M
+
+#define  QW_I     KC_I
+#define  QW_K     MT(MOD_RALT, KC_K)
+#define  QW_COMM  KC_COMM
+
+#define  QW_O     KC_O
+#define  QW_L     MT(MOD_RSFT, KC_L)
+#define  QW_DOT   KC_DOT
+
+#define  QW_P     KC_P
+#define  QW_SCLN  MT(MOD_RGUI, KC_SCLN)
+#define  QW_SLSH  KC_SLSH
+
+// nav bindings
+#define  NV_F9     KC_F9
+#define  NV_F6     MT(MOD_RSFT, KC_F6)
+#define  NV_F3     KC_F3
+
+#define  NV_F8     KC_F8
+#define  NV_F5     MT(MOD_RALT, KC_F5)
+#define  NV_F2     KC_F2
+
+#define  NV_F7     KC_F7
+#define  NV_F4     MT(MOD_RCTL, KC_F4)
+#define  NV_F1     KC_F1
+
+#define  NV_F10    KC_F10
+#define  NV_F11    KC_F11
+#define  NV_F12    KC_F12
 
 // qoupy bindings
 #define QOU_Q     KC_Q

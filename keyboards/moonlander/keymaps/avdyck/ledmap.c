@@ -94,24 +94,6 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         black, black, black, black, black, black, black,
 
         black, black, black, black, black,
-        black, black, black, black, black,
-        black, black, black, black, black,
-        black, black, black, black, black,
-        black, black, black, black, black,
-        black, black, black, black,
-        black, black, black, black, black, black, black
-    },
-
-    [NUM] = {
-        black, black, black, black, black,
-        black, black, black, black, black,
-        black, black, black, black, black,
-        black, black, black, black, black,
-        black, black, black, black, black,
-        black, black, black, black,
-        black, black, black, black, black, black, black,
-
-        black, black, black, black, black,
         black, dblue, cyeen, dblue, dblue,
         cyeen, yelow, yelow, yelow, black,
         dblue, yelow, yelow, yelow, cyeen,

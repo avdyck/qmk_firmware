@@ -11,10 +11,10 @@ EXTRAKEY_ENABLE = no
 SPACE_CADET_ENABLE = no
 GRAVE_ESC_ENABLE = no
 MAGIC_ENABLE = no
+DYNAMIC_MACRO_ENABLE = no
 
 # media keys & macros
 EXTRAKEY_ENABLE = yes
-DYNAMIC_MACRO_ENABLE = yes
 
 # combos
 COMBO_ENABLE = yes
@@ -26,3 +26,4 @@ CAPS_WORD_ENABLE = no
 SRC = matrix.c
 SRC += keydefs.c
 SRC += ledmap.c
+SRC += achordion.c
