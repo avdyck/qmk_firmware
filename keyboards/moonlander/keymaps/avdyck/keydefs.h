@@ -17,13 +17,13 @@ enum LAYERS {
 #define LTHUMB3      KC_LALT
 #define LTHUMB4      MO(MDIA)
 
-#define RTHUMB1      MT(MOD_LCTL, KC_SPACE)
-#define RTHUMB2      KC_LALT
+#define RTHUMB1      KC_SPACE
+#define RTHUMB2      MO(NAV)
 #define RTHUMB3      KC_LGUI
 #define RTHUMB4      TG(NUM)
 
-#define ESCAP        MO(NAV)
-#define SJIFT        KC_LSFT
+#define ESCAP        KC_ESC
+#define SJIFT        KC_LCTL
 #define SHIFTTHUMB   LTHUMB1
 #define SPACETHUMB   RTHUMB1
 
@@ -75,45 +75,45 @@ enum LAYERS {
 #define QOU_SLSH  KC_SLSH
 
 // symbols
-#define SYM_Q     KC_DQUO
-#define SYM_A     KC_BSLS
-#define SYM_Z     KC_QUOT
+#define SYM_Q     KC_NO
+#define SYM_A     KC_EXLM
+#define SYM_Z     KC_NO
 
-#define SYM_W     KC_LBRC
-#define SYM_S     KC_LPRN
-#define SYM_X     KC_LCBR
+#define SYM_W     KC_MINS
+#define SYM_S     KC_LT
+#define SYM_X     KC_ASTR
 
-#define SYM_E     KC_RBRC
-#define SYM_D     KC_RPRN
-#define SYM_C     KC_RCBR
+#define SYM_E     KC_TILD
+#define SYM_D     KC_EQL
+#define SYM_C     KC_NO
 
-#define SYM_R     KC_COLN
-#define SYM_F     KC_SCLN
-#define SYM_V     KC_GRV
+#define SYM_R     KC_PLUS
+#define SYM_F     KC_GT
+#define SYM_V     KC_SLSH
 
-#define SYM_T     KC_HASH
-#define SYM_G     KC_CIRC
-#define SYM_B     KC_DLR
+#define SYM_T     KC_PERC
+#define SYM_G     KC_PIPE
+#define SYM_B     KC_CIRC
 
-#define SYM_Y     KC_PERC
-#define SYM_H     KC_PIPE
-#define SYM_N     KC_AMPR
+#define SYM_Y     KC_HASH
+#define SYM_H     KC_AMPR
+#define SYM_N     KC_DLR
 
-#define SYM_U     KC_NO
-#define SYM_J     KC_EQL
-#define SYM_M     KC_TILD
+#define SYM_U     KC_LBRC
+#define SYM_J     KC_LPRN
+#define SYM_M     KC_LCBR
 
-#define SYM_I     KC_MINS
-#define SYM_K     KC_LT
-#define SYM_COMM  KC_ASTR
+#define SYM_I     KC_QUOT
+#define SYM_K     KC_DQUO
+#define SYM_COMM  KC_GRV
 
-#define SYM_O     KC_PLUS
-#define SYM_L     KC_GT
-#define SYM_DOT   KC_DOT
+#define SYM_O     KC_RBRC
+#define SYM_L     KC_RPRN
+#define SYM_DOT   KC_RCBR
 
-#define SYM_P     KC_EXLM
-#define SYM_SCLN  KC_QUES
-#define SYM_SLSH  KC_SLSH
+#define SYM_P     KC_NO
+#define SYM_SCLN  KC_BSLS
+#define SYM_SLSH  KC_NO
 
 // combos (Comb Left/Right C(ontrol)/A(lt)/S(hift)/G(ui)
 #define CombLC KC_F

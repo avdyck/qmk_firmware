@@ -8,8 +8,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QWERTY] = LAYOUT_moonlander(
         KC_DEL,   KC_4,     KC_0,     KC_1,     KC_2,     KC_3,     _______,             TG(QOUPY),KC_7,     KC_6,     KC_5,     KC_9,     KC_8,     _______,
         KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     C(KC_INS),           TG(NUM),  KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC,
-        ESCAP,    KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     S(KC_INS),           KC_INS,   KC_H,     KC_J,     KC_K,     KC_L,     KC_COLN,  KC_QUOT,
-        SJIFT,    KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                                    KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_ENTER,
+        ESCAP,    KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     S(KC_INS),           KC_INS,   KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_ENTER,
+        SJIFT,    KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                                    KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_NO,
         _______,  _______,  LTHUMB4,  LTHUMB3,  LTHUMB2,  KC_PSCR,                                 TG(GMNG), RTHUMB2,  RTHUMB3,  RTHUMB4,  _______,  _______,
                                                 LTHUMB1,  _______,  _______,             _______,  _______,  RTHUMB1
     ),
@@ -109,9 +109,9 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static key_state sthumb1_state = { .hold_code = SHIFTTHUMB, .tap_code = KC_ESCAPE };
-    static key_state escap_state   = { .hold_code = ESCAP,      .tap_code = KC_ESCAPE };
     process_long_tap(keycode, record, &sthumb1_state);
-    process_long_tap(keycode, record, &escap_state);
+//    static key_state escap_state   = { .hold_code = ESCAP,      .tap_code = KC_ESCAPE };
+//    process_long_tap(keycode, record, &escap_state);
 
     if (!process_custom_shift_keys(keycode, record)) { return false; }
 

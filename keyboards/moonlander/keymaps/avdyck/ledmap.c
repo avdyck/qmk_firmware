@@ -13,7 +13,7 @@
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [QWERTY] = {
-        white, white, reddd, white, black,
+        white, white, reddd, yelow, black,
         white, bluee, bluee, bluee, black,
         white, bluee, bluee, bluee, dblue,
         white, bluee, bluee, bluee, yelow,
@@ -27,7 +27,7 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         white, bluee, bluee, white, yelow,
         white, bluee, bluee, bluee, yelow,
         white, bluee, bluee, bluee,
-        white, white, white, yelow, black, black, white
+        white, white, white, white, black, black, white
     },
 
     [QOUPY] = {
