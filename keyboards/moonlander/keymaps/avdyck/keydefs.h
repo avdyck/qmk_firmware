@@ -22,7 +22,8 @@ enum LAYERS {
 #define RTHUMB3      KC_LGUI
 #define RTHUMB4      TG(NUM)
 
-#define ESCAP        KC_ESC
+#define TABBB        KC_DEL
+#define ESCAP        KC_TAB
 #define SJIFT        KC_LCTL
 #define SHIFTTHUMB   LTHUMB1
 #define SPACETHUMB   RTHUMB1
