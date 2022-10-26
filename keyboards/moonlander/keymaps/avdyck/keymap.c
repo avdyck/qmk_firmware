@@ -3,14 +3,13 @@
 #include "keydefs.h"
 #include "ledmap.h"
 #include "g/keymap_combo.h"
-#include "achordion.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QWERTY] = LAYOUT_moonlander(
         _______,  KC_4,     KC_0,     KC_1,     KC_2,     KC_3,     _______,             TG(QOUPY),KC_7,     KC_6,     KC_5,     KC_9,     KC_8,     _______,
-        TABBB,    QW_Q,     QW_W,     QW_E,     QW_R,     QW_T,     C(KC_INS),           TG(MDIA), QW_Y,     QW_U,     QW_I,     QW_O,     QW_P,     KC_BSPC,
-        ESCAP,    QW_A,     QW_S,     QW_D,     QW_F,     QW_G,     S(KC_INS),           KC_INS,   QW_H,     QW_J,     QW_K,     QW_L,     QW_SCLN,  KC_ENTER,
-        SJIFT,    QW_Z,     QW_X,     QW_C,     QW_V,     QW_B,                                    QW_N,     QW_M,     QW_COMM,  QW_DOT,   QW_SLSH,  KC_RSFT,
+        KC_DEL,   QW_Q,     QW_W,     QW_E,     QW_R,     QW_T,     C(KC_INS),           TG(MDIA), QW_Y,     QW_U,     QW_I,     QW_O,     QW_P,     KC_BSPC,
+        KC_TAB,   QW_A,     QW_S,     QW_D,     QW_F,     QW_G,     S(KC_INS),           KC_INS,   QW_H,     QW_J,     QW_K,     QW_L,     QW_SCLN,  KC_ENT,
+        _______,  QW_Z,     QW_X,     QW_C,     QW_V,     QW_B,                                    QW_N,     QW_M,     QW_COMM,  QW_DOT,   QW_SLSH,  _______,
         _______,  _______,  LTHUMB4,  LTHUMB3,  LTHUMB2,  KC_PSCR,                                 TG(GMNG), RTHUMB2,  RTHUMB3,  RTHUMB4,  _______,  _______,
                                                 LTHUMB1,  _______,  _______,             _______,  _______,  RTHUMB1
     ),
@@ -32,9 +31,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [NAV] = LAYOUT_moonlander(
         _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  _______,  _______,  _______,  _______,  _______,  _______,
-        _______,  _______,  NV_F9,    NV_F8,    NV_F7,    NV_F10,   _______,             _______,  _______,  KC_HOME,  KC_UP,    KC_END,   _______,  _______,
-        _______,  _______,  NV_F6,    NV_F5,    NV_F4,    NV_F11,   _______,             _______,  CG_LEFT,  KC_LEFT,  KC_DOWN,  KC_RIGHT, CG_RIGHT, _______,
-        _______,  _______,  NV_F3,    NV_F2,    NV_F1,    NV_F12,                                  _______,  KC_PGUP,  _______,  KC_PGDN,  _______,  _______,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  KC_PGUP,  KC_HOME,  KC_UP,    KC_END,   KC_BSPC,  _______,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  KC_PGDN,  KC_LEFT,  KC_DOWN,  KC_RIGHT, KC_ENT,   _______,
+        _______,  _______,  _______,  _______,  _______,  _______,                                 _______,  _______,  _______,  _______,  _______,  _______,
+        _______,  _______,  _______,  _______,  _______,  _______,                                 _______,  _______,  _______,  _______,  _______,  _______,
+                                                _______,  _______,  _______,             _______,  _______,  _______
+    ),
+    [FUN] = LAYOUT_moonlander(
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  _______,  _______,  _______,  _______,  _______,  _______,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  _______,  KC_F10,   KC_F7,    KC_F8,    KC_F9,    _______,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  _______,  KC_F11,   KC_F4,    KC_F5,    KC_F6,    _______,
+        _______,  _______,  _______,  _______,  _______,  _______,                                 _______,  KC_F12,   KC_F1,    KC_F2,    KC_F3,    _______,
         _______,  _______,  _______,  _______,  _______,  _______,                                 _______,  _______,  _______,  _______,  _______,  _______,
                                                 _______,  _______,  _______,             _______,  _______,  _______
     ),
@@ -82,7 +89,7 @@ static void process_long_tap(uint16_t keycode, keyrecord_t *record, key_state *s
         state->time = timer_read();
     } else {
         unregister_code16(state->hold_code);
-        if (state->pressed && timer_elapsed(state->time) <= 500) {
+        if (state->pressed && timer_elapsed(state->time) <= TAPPING_TERM) {
             // we did not press any other key and released within tapping term -> send tap code
             tap_code16(state->tap_code);
         }
@@ -90,66 +97,42 @@ static void process_long_tap(uint16_t keycode, keyrecord_t *record, key_state *s
     }
 }
 
+const key_override_t dot_key_override  = ko_make_basic(MOD_MASK_SHIFT, KC_DOT,  KC_AT);  // Shift . is ?
+const key_override_t comm_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_COMM, KC_UNDS); // Shift , is !
+const key_override_t coln_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_COLN, KC_SCLN); // Shift : is ;
+
+const key_override_t** key_overrides = (const key_override_t*[]){
+    &dot_key_override,
+    &comm_key_override,
+    &coln_key_override,
+    NULL
+};
+
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case ESCAP:
-        case SHIFTTHUMB:
-            return 0;
+        case QW_Z:
+        case QW_SLSH:
+            return TAPPING_TERM + 100;
+
         default:
             return TAPPING_TERM;
     }
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    if (!process_achordion(keycode, record)) { return false; }
-
     static key_state sthumb1_state = { .hold_code = SHIFTTHUMB, .tap_code = KC_ESCAPE };
     process_long_tap(keycode, record, &sthumb1_state);
-
-    if (!process_custom_shift_keys(keycode, record)) { return false; }
 
     return true;
 }
 
-void matrix_scan_user(void) {
-  achordion_task();
-}
-
-bool achordion_chord(uint16_t tap_hold_keycode,
-                     keyrecord_t* tap_hold_record,
-                     uint16_t other_keycode,
-                     keyrecord_t* other_record) {
-    // Exceptionally consider the following chords as holds
-    switch (other_keycode) {
-        case QW_B:
-        case QW_G:
-        case QW_T:
-        case QW_Y:
-        case QW_H:
-        case QW_N:
-        case TABBB:
-        case ESCAP:
-        case KC_ENTER:
-        case KC_BSPC:
-            return true;
-    }
-
-    // Otherwise, follow the opposite hands rule.
-    return achordion_opposite_hands(tap_hold_record, other_record);
-}
-
-uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
-  return 500;
-}
-
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
-    return COMBO_TERM;
-//    switch (combo->keys[0]) {
-//        case LTHUMB1:
-//        case RTHUMB1:
-//            return COMBO_TERM;
-//        default:
-//            // non-thumb combos can be faster cause of typos
-//            return 30;
-//    }
+    switch (combo->keys[0]) {
+        case LTHUMB1:
+        case RTHUMB1:
+            return COMBO_TERM;
+        default:
+            // non-thumb combos can be faster cause of typos
+            return 30;
+    }
 }

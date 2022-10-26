@@ -6,12 +6,12 @@ LTO_ENABLE = yes
 # minimal size
 CONSOLE_ENABLE = no
 COMMAND_ENABLE = no
+DYNAMIC_MACRO_ENABLE = no
 MOUSEKEY_ENABLE = no
 EXTRAKEY_ENABLE = no
 SPACE_CADET_ENABLE = no
 GRAVE_ESC_ENABLE = no
 MAGIC_ENABLE = no
-DYNAMIC_MACRO_ENABLE = no
 
 # media keys & macros
 EXTRAKEY_ENABLE = yes
@@ -20,10 +20,11 @@ EXTRAKEY_ENABLE = yes
 COMBO_ENABLE = yes
 VPATH += keyboards/gboards
 
+# key override
+KEY_OVERRIDE_ENABLE = yes
+
 # caps word
 CAPS_WORD_ENABLE = no
 
 SRC = matrix.c
-SRC += keydefs.c
 SRC += ledmap.c
-SRC += achordion.c

@@ -13,21 +13,21 @@
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [QWERTY] = {
-        white, white, white, yelow, black,
+        black, white, white, black, black,
         white, bluee, bluee, bluee, black,
         white, bluee, bluee, bluee, dblue,
-        white, bluee, bluee, bluee, yelow,
+        white, bluee, bluee, bluee, black,
         white, bluee, bluee, bluee, green,
         white, bluee, bluee, bluee,
-        white, white, white, white, black, black, white,
+        black, white, white, white, black, black, white,
 
-        white, white, white, white, black,
+        black, white, white, black, black,
         white, bluee, white, white, black,
         white, bluee, bluee, white, dblue,
-        white, bluee, bluee, white, yelow,
+        white, bluee, bluee, white, purpl,
         white, bluee, bluee, bluee, reddd,
         white, bluee, bluee, bluee,
-        white, white, white, white, black, black, white
+        black, white, white, white, black, black, white
     },
 
     [QOUPY] = {
@@ -50,37 +50,55 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
 
     [SYM] = {
         black, black, black, black, black,
-        black, green, green, green, black,
-        black, green, green, green, black,
-        black, green, green, green, black,
-        black, green, green, green, black,
-        black, green, green, green,
+        black, yelow, green, green, black,
+        black, yelow, green, green, black,
+        black, yelow, green, green, black,
+        black, yelow, green, green, black,
+        black, yelow, green, green,
         black, black, black, black, black, black, black,
 
         black, black, black, black, black,
-        black, green, green, green, black,
-        black, green, green, green, black,
-        black, green, green, green, black,
-        black, green, green, green, black,
-        black, green, green, green,
+        black, yelow, green, green, black,
+        black, yelow, green, green, black,
+        black, yelow, green, green, black,
+        black, yelow, green, green, black,
+        black, yelow, green, green,
         black, black, black, black, black, black, black
     },
 
     [NAV] = {
         black, black, black, black, black,
         black, black, black, black, black,
-        black, purpl, purpl, purpl, black,
-        black, purpl, purpl, purpl, black,
-        black, purpl, purpl, purpl, black,
-        black, purpl, purpl, purpl,
+        black, black, black, black, black,
+        black, black, black, black, black,
+        black, black, black, black, black,
+        black, black, black, black,
         black, black, black, black, black, black, black,
 
         black, black, black, black, black,
-        black, black, bluee, black, black,
-        black, bluee, reddd, bluee, black,
+        black, bluee, bluee, black, black,
+        black, bluee, reddd, black, black,
         black, reddd, reddd, black, black,
-        black, bluee, reddd, bluee, black,
-        black, black, bluee, black,
+        black, bluee, reddd, black, black,
+        black, bluee, bluee, black,
+        black, black, black, black, black, black, black
+    },
+
+    [FUN] = {
+        black, black, black, black, black,
+        black, black, black, black, black,
+        black, black, black, black, black,
+        black, black, black, black, black,
+        black, black, black, black, black,
+        black, black, black, black,
+        black, black, black, black, black, black, black,
+
+        black, black, black, black, black,
+        black, purpl, purpl, purpl, black,
+        black, purpl, purpl, purpl, black,
+        black, purpl, purpl, purpl, black,
+        black, purpl, purpl, purpl, black,
+        black, black, black, black,
         black, black, black, black, black, black, black
     },
 
