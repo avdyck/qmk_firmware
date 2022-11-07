@@ -28,3 +28,4 @@ CAPS_WORD_ENABLE = no
 
 SRC = matrix.c
 SRC += ledmap.c
+SRC += achordion.c

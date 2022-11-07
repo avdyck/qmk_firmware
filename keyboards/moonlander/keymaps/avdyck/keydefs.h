@@ -12,21 +12,17 @@ enum LAYERS {
     GMNG
 };
 
-#define LTHUMB1      KC_LSFT
-#define LTHUMB2      MO(SYM)
+#define LTHUMB0      MT(MOD_LSFT, KC_TAB)
+#define LTHUMB1      LT(SYM, KC_ESCAPE)
+#define LTHUMB2      KC_DEL
 #define LTHUMB3      KC_NO
 #define LTHUMB4      MO(MDIA)
 
-#define RTHUMB1      KC_SPACE
-#define RTHUMB2      MO(NAV)
-#define RTHUMB3      MO(FUN)
+#define RTHUMB0      LT(FUN, KC_ENTER)
+#define RTHUMB1      LT(NAV, KC_SPACE)
+#define RTHUMB2      KC_BSPC
+#define RTHUMB3      KC_NO
 #define RTHUMB4      TG(MDIA)
-
-#define TABBB        KC_NO
-#define ESCAP        KC_TAB
-#define SJIFT        KC_NO
-#define SHIFTTHUMB   LTHUMB1
-#define SPACETHUMB   RTHUMB1
 
 #define M_PREV       KC_MEDIA_PREV_TRACK
 #define M_NEXT       KC_MEDIA_NEXT_TRACK
@@ -41,11 +37,16 @@ enum LAYERS {
 #define MAC_STOP     DYN_REC_STOP
 #define MAC_PLAY1    DYN_MACRO_PLAY1
 
-#define M1(x)  MT(MOD_LGUI, (x))
-#define M2(x)  MT(MOD_LALT, (x))
-#define M3(x)  MT(MOD_LSFT, (x))
-#define M4(x)  MT(MOD_LCTL, (x))
+#define ML1(x)  MT(MOD_LGUI, (x))
+#define MR1(x)  MT(MOD_RGUI, (x))
+#define ML2(x)  MT(MOD_LALT, (x))
+#define MR2(x)  MT(MOD_RALT, (x))
+#define ML3(x)  MT(MOD_LSFT, (x))
+#define MR3(x)  MT(MOD_RSFT, (x))
+#define MR4(x)  MT(MOD_LCTL, (x))
+#define ML4(x)  MT(MOD_RCTL, (x))
 
+// qwerty bindings
 #define QW_Q     KC_Q
 #define QW_W     KC_W
 #define QW_E     KC_E
@@ -57,28 +58,27 @@ enum LAYERS {
 #define QW_O     KC_O
 #define QW_P     KC_P
 
-#define QW_A     KC_A
-#define QW_S     M2(KC_S)
-#define QW_D     M3(KC_D)
-#define QW_F     M4(KC_F)
-#define QW_G     KC_G
-#define QW_H     KC_H
-#define QW_J     M4(KC_J)
-#define QW_K     M3(KC_K)
-#define QW_L     M2(KC_L)
-#define QW_SCLN  KC_QUOT
+#define QW_A     ML1(   KC_A)
+#define QW_S     ML2(   KC_S)
+#define QW_D     ML3(   KC_D)
+#define QW_F     ML4(   KC_F)
+#define QW_G            KC_G
+#define QW_H            KC_H
+#define QW_J     MR4(   KC_J)
+#define QW_K     MR3(   KC_K)
+#define QW_L     MR2(   KC_L)
+#define QW_SCLN  MR1(KC_QUOT)
 
-#define QW_Z     M1(KC_Z)
-#define QW_X     KC_X
-#define QW_C     KC_C
-#define QW_V     KC_V
-#define QW_B     KC_B
-#define QW_N     KC_N
-#define QW_M     KC_M
+#define QW_Z        KC_Z
+#define QW_X        KC_X
+#define QW_C        KC_C
+#define QW_V        KC_V
+#define QW_B        KC_B
+#define QW_N        KC_N
+#define QW_M        KC_M
 #define QW_COMM  KC_COMM
-#define QW_DOT   KC_DOT
-#define QW_SLSH  M1(KC_SLSH)
-
+#define QW_DOT    KC_DOT
+#define QW_SLSH  KC_SLSH
 
 // qoupy bindings
 #define QOU_Q     KC_Q
@@ -115,35 +115,35 @@ enum LAYERS {
 #define QOU_SLSH  KC_SLSH
 
 // symbols
-#define SYM_Q     KC_3
-#define SYM_W     KC_2
+#define SYM_Q     KC_4
+#define SYM_W     KC_0
 #define SYM_E     KC_1
-#define SYM_R     KC_0
-#define SYM_T     KC_4
-#define SYM_Y     KC_9
-#define SYM_U     KC_5
-#define SYM_I     KC_6
-#define SYM_O     KC_7
+#define SYM_R     KC_2
+#define SYM_T     KC_3
+#define SYM_Y     KC_7
+#define SYM_U     KC_6
+#define SYM_I     KC_5
+#define SYM_O     KC_9
 #define SYM_P     KC_8
 
 #define SYM_A     KC_LCBR
-#define SYM_S     KC_LBRC
-#define SYM_D     KC_LT
+#define SYM_S     KC_LT
+#define SYM_D     KC_LBRC
 #define SYM_F     KC_LPRN
 #define SYM_G     KC_PIPE
 #define SYM_H     KC_AMPR
 #define SYM_J     KC_RPRN
-#define SYM_K     KC_GT
-#define SYM_L     KC_RBRC
+#define SYM_K     KC_RBRC
+#define SYM_L     KC_GT
 #define SYM_SCLN  KC_RCBR
 
 #define SYM_Z     KC_BSLS
 #define SYM_X     KC_EXLM
-#define SYM_C     KC_PLUS
-#define SYM_V     KC_MINS
+#define SYM_C     KC_ASTR
+#define SYM_V     KC_EQL
 #define SYM_B     KC_CIRC
 #define SYM_N     KC_DLR
-#define SYM_M     KC_EQL
-#define SYM_COMM  KC_ASTR
+#define SYM_M     KC_MINS
+#define SYM_COMM  KC_PLUS
 #define SYM_DOT   KC_DOT
 #define SYM_SLSH  KC_SLSH

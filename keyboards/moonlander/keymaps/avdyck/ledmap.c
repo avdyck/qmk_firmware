@@ -13,21 +13,21 @@
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
     [QWERTY] = {
-        black, white, white, black, black,
-        white, bluee, bluee, bluee, black,
-        white, bluee, bluee, bluee, dblue,
-        white, bluee, bluee, bluee, black,
-        white, bluee, bluee, bluee, green,
-        white, bluee, bluee, bluee,
-        black, white, white, white, black, black, white,
+        black, black, black, black, black,
+        black, bluee, bluee, bluee, black,
+        black, bluee, bluee, bluee, dblue,
+        black, bluee, bluee, bluee, white,
+        black, bluee, bluee, bluee, white,
+        black, bluee, bluee, bluee,
+        black, white, white, green, white, black, white,
 
-        black, white, white, black, black,
-        white, bluee, white, white, black,
-        white, bluee, bluee, white, dblue,
-        white, bluee, bluee, white, purpl,
-        white, bluee, bluee, bluee, reddd,
-        white, bluee, bluee, bluee,
-        black, white, white, white, black, black, white
+        black, black, black, black, black,
+        black, bluee, white, white, black,
+        black, bluee, bluee, white, dblue,
+        black, bluee, bluee, white, white,
+        black, bluee, bluee, bluee, white,
+        black, bluee, bluee, bluee,
+        black, white, white, reddd, purpl, black, white
     },
 
     [QOUPY] = {
@@ -94,11 +94,11 @@ const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
         black, black, black, black, black, black, black,
 
         black, black, black, black, black,
+        black, black, black, black, black,
         black, purpl, purpl, purpl, black,
         black, purpl, purpl, purpl, black,
         black, purpl, purpl, purpl, black,
-        black, purpl, purpl, purpl, black,
-        black, black, black, black,
+        black, purpl, purpl, purpl,
         black, black, black, black, black, black, black
     },
 
