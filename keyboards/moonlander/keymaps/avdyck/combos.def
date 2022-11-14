@@ -1,9 +1,7 @@
 
-// COMB(comb_SCLN, KC_SCLN, QW_DOT, QW_COMM)
-// COMB(comb_COLN, KC_COLN, QW_COMM, QW_M)
+
+// COMB(comb_TILD, KC_TILD, SYM_W, SYM_E)
+// COMB(comb_PERC, KC_PERC, SYM_E, SYM_R)
 //
-// COMB(comb_PERC, KC_PERC, SYM_D, SYM_F)
-// COMB(comb_HASH, KC_HASH, SYM_J, SYM_K)
-//
-// COMB(comb_TILD, KC_TILD, SYM_S, SYM_D)
-// COMB(comb_GRAV, KC_GRV,  SYM_K, SYM_L)
+// COMB(comb_HASH, KC_HASH, SYM_U, SYM_I)
+// COMB(comb_GRAV, KC_GRV,  SYM_I, SYM_O)

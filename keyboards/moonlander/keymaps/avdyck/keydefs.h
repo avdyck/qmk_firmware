@@ -12,32 +12,23 @@ enum LAYERS {
     GMNG
 };
 
-#define LTHUMB0      LT(SYM, KC_TAB)
-#define LTHUMB1      MT(MOD_LSFT, KC_ESCAPE)
-#define LTHUMB2      KC_DEL
+#define LTHUMB0      KC_TAB
+#define LTHUMB1      KC_LSFT
+#define LTHUMB2      MO(SYM)
 #define LTHUMB3      KC_NO
 #define LTHUMB4      MO(MDIA)
 
-#define RTHUMB0      LT(FUN, KC_ENTER)
+#define RTHUMB0      KC_ENTER
 #define RTHUMB1      LT(NAV, KC_SPACE)
-#define RTHUMB2      KC_BSPC
+#define RTHUMB2      MO(FUN)
 #define RTHUMB3      KC_NO
 #define RTHUMB4      TG(MDIA)
 
-#define LSJIFT       KC_LSFT
-#define RSJIFT       KC_RCTL
+#define TABBB        KC_NO
+#define ENTR         KC_QUOT
 
-//#define LTHUMB0      KC_TAB
-//#define LTHUMB1      KC_SPACE
-//#define LTHUMB2      LT(NAV, KC_ESC)
-//#define LTHUMB3      KC_NO
-//#define LTHUMB4      MO(MDIA)
-//
-//#define RTHUMB0      KC_ENTER
-//#define RTHUMB1      MT(KC_LSFT, KC_BSPC)
-//#define RTHUMB2      LT(SYM, KC_DEL)
-//#define RTHUMB3      KC_NO
-//#define RTHUMB4      TG(MDIA)
+#define LSJIFT       KC_RCTL
+#define RSJIFT       KC_RSFT
 
 #define M_PREV       KC_MEDIA_PREV_TRACK
 #define M_NEXT       KC_MEDIA_NEXT_TRACK
@@ -56,10 +47,10 @@ enum LAYERS {
 #define MR1(x)  MT(MOD_RGUI, (x))
 #define ML2(x)  MT(MOD_LALT, (x))
 #define MR2(x)  MT(MOD_RALT, (x))
-#define ML3(x)  MT(MOD_LSFT, (x))
-#define MR3(x)  MT(MOD_RSFT, (x))
-#define MR4(x)  MT(MOD_LCTL, (x))
-#define ML4(x)  MT(MOD_RCTL, (x))
+#define ML3(x)  MT(MOD_LCTL, (x))
+#define MR3(x)  MT(MOD_RCTL, (x))
+#define MR4(x)  MT(MOD_LSFT, (x))
+#define ML4(x)  MT(MOD_RSFT, (x))
 
 // qwerty bindings
 #define QW_Q     KC_Q
@@ -96,27 +87,30 @@ enum LAYERS {
 #define QW_SLSH  KC_SLSH
 
 // nav bindings
-#define NV_W     KC_F9
-#define NV_E     KC_F8
-#define NV_R     KC_F7
-#define NV_T     KC_F10
+#define NV_Q     KC_TRNS
+#define NV_W     KC_TRNS
+#define NV_E     KC_TRNS
+#define NV_R     KC_TRNS
+#define NV_T     KC_TRNS
 
-#define NV_S     ML2(   KC_F6)
-#define NV_D     ML3(   KC_F5)
-#define NV_F     ML4(   KC_F4)
-#define NV_G            KC_F11
+#define NV_A     KC_TRNS
+#define NV_S     KC_TRNS
+#define NV_D     KC_TRNS
+#define NV_F     KC_TRNS
+#define NV_G     KC_TRNS
 
-#define NV_X     KC_F3
-#define NV_C     KC_F2
-#define NV_V     KC_F1
-#define NV_B     KC_F12
+#define NV_Z     KC_TRNS
+#define NV_X     KC_TRNS
+#define NV_C     KC_TRNS
+#define NV_V     KC_TRNS
+#define NV_B     KC_TRNS
 
 // qoupy bindings
-#define QOU_Q     KC_X
+#define QOU_Q     KC_Z
 #define QOU_W     KC_L
 #define QOU_E     KC_D
 #define QOU_R     KC_M
-#define QOU_T     KC_V
+#define QOU_T     KC_X
 #define QOU_Y     KC_Q
 #define QOU_U     KC_F
 #define QOU_I     KC_U
@@ -138,7 +132,7 @@ enum LAYERS {
 #define QOU_X     KC_W
 #define QOU_C     KC_J
 #define QOU_V     KC_K
-#define QOU_B     KC_Z
+#define QOU_B     KC_V
 #define QOU_N     KC_SCLN
 #define QOU_M     KC_H
 #define QOU_COMM  KC_COMM
@@ -169,9 +163,9 @@ enum LAYERS {
 #define SYM_SCLN  KC_BSLS
 
 #define SYM_Z     KC_NO
-#define SYM_X     KC_SLSH
+#define SYM_X     KC_ASTR
 #define SYM_C     KC_NO
-#define SYM_V     KC_ASTR
+#define SYM_V     KC_SLSH
 #define SYM_B     KC_CIRC
 #define SYM_N     KC_DLR
 #define SYM_M     KC_LCBR
