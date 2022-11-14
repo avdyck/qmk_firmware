@@ -3,14 +3,13 @@
 #include "keydefs.h"
 #include "ledmap.h"
 #include "g/keymap_combo.h"
-#include "achordion.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QWERTY] = LAYOUT_moonlander(
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,             TG(QOUPY),_______,  _______,  _______,  _______,  _______,  _______,
-        _______,  QW_Q,     QW_W,     QW_E,     QW_R,     QW_T,     C(KC_INS),           TG(MDIA), QW_Y,     QW_U,     QW_I,     QW_O,     QW_P,     _______,
-        _______,  QW_A,     QW_S,     QW_D,     QW_F,     QW_G,     S(KC_INS),           KC_INS,   QW_H,     QW_J,     QW_K,     QW_L,     QW_SCLN,  _______,
-        _______,  QW_Z,     QW_X,     QW_C,     QW_V,     QW_B,                                    QW_N,     QW_M,     QW_COMM,  QW_DOT,   QW_SLSH,  _______,
+        _______,  KC_4,     KC_0,     KC_1,     KC_2,     KC_3,     _______,             TG(QOUPY),KC_7,     KC_6,     KC_5,     KC_9,     KC_8,     _______,
+        KC_DEL,   QW_Q,     QW_W,     QW_E,     QW_R,     QW_T,     C(KC_INS),           TG(MDIA), QW_Y,     QW_U,     QW_I,     QW_O,     QW_P,     KC_BSPC,
+        KC_TAB,   QW_A,     QW_S,     QW_D,     QW_F,     QW_G,     S(KC_INS),           KC_INS,   QW_H,     QW_J,     QW_K,     QW_L,     QW_SCLN,  KC_ENT,
+        LSJIFT,   QW_Z,     QW_X,     QW_C,     QW_V,     QW_B,                                    QW_N,     QW_M,     QW_COMM,  QW_DOT,   QW_SLSH,  RSJIFT,
         _______,  _______,  LTHUMB4,  LTHUMB3,  LTHUMB2,  KC_PSCR,                                 TG(GMNG), RTHUMB2,  RTHUMB3,  RTHUMB4,  _______,  _______,
                                                 LTHUMB1,  LTHUMB0,  _______,             _______,  RTHUMB0,  RTHUMB1
     ),
@@ -32,9 +31,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [NAV] = LAYOUT_moonlander(
         _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  _______,  _______,  _______,  _______,  _______,  _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  KC_PGUP,  KC_HOME,  KC_UP,    KC_END,   KC_BSPC,  _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  KC_PGDN,  KC_LEFT,  KC_DOWN,  KC_RIGHT, KC_ENT,   _______,
-        _______,  _______,  _______,  _______,  _______,  _______,                                 _______,  _______,  _______,  _______,  _______,  _______,
+        _______,  _______,  NV_W,     NV_E,     NV_R,     NV_T,     _______,             _______,  KC_PGUP,  KC_HOME,  KC_UP,    KC_END,   KC_BSPC,  _______,
+        _______,  _______,  NV_S,     NV_D,     NV_F,     NV_G,     _______,             _______,  KC_PGDN,  KC_LEFT,  KC_DOWN,  KC_RIGHT, KC_ENT,   _______,
+        _______,  _______,  NV_X,     NV_C,     NV_V,     NV_B,                                    _______,  _______,  _______,  _______,  _______,  _______,
         _______,  _______,  _______,  _______,  _______,  _______,                                 _______,  _______,  _______,  _______,  _______,  _______,
                                                 _______,  _______,  _______,             _______,  _______,  _______
     ),
@@ -70,49 +69,6 @@ void keyboard_post_init_user(void) {
     rgb_matrix_enable();
 }
 
-//typedef struct {
-//    uint16_t hold_code;
-//    uint16_t tap_code;
-//    bool pressed;
-//    uint16_t time;
-//} key_state;
-//
-//static void process_long_tap(uint16_t keycode, keyrecord_t *record, key_state *state) {
-//    bool pressed = record->event.pressed;
-//
-//    if (keycode != state->hold_code) {
-//        if (pressed) { state->pressed = false; }
-//        return;
-//    }
-//
-//    if (pressed) {
-//        state->pressed = true;
-//        state->time = timer_read();
-//    } else {
-//        unregister_code16(state->hold_code);
-//        if (state->pressed && timer_elapsed(state->time) <= LONG_TAPPING_TERM) {
-//            // we did not press any other key and released within tapping term -> send tap code
-//            tap_code16(state->tap_code);
-//        }
-//        state->pressed = false;
-//    }
-//}
-
-bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-    // static key_state lthumb0_state = { .hold_code = LTHUMB0, .tap_code = KC_TAB };
-    // static key_state lthumb1_state = { .hold_code = LTHUMB1, .tap_code = KC_ESCAPE };
-    // process_long_tap(keycode, record, &lthumb0_state);
-    // process_long_tap(keycode, record, &lthumb1_state);
-
-    if (!process_achordion(keycode, record)) { return false; }
-
-    return true;
-}
-
-void matrix_scan_user(void) {
-  achordion_task();
-}
-
 const key_override_t dot_key_override  = ko_make_basic(MOD_MASK_SHIFT, QW_DOT,  KC_AT);   // Shift . is @
 const key_override_t comm_key_override = ko_make_basic(MOD_MASK_SHIFT, QW_COMM, KC_UNDS); // Shift , is _
 
@@ -123,61 +79,37 @@ const key_override_t** key_overrides = (const key_override_t*[]){
 };
 
 uint16_t get_combo_term(uint16_t index, combo_t *combo) {
-    switch (combo->keys[0]) {
-        case LTHUMB1:
-        case RTHUMB1:
-            return COMBO_TERM;
-        default:
-            // non-thumb combos can be faster cause of typos
-            return 30;
-    }
+    return COMBO_TERM;
 }
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case QW_A:
-        case QW_Z:
+        case QOU_A:
         case QW_SCLN:
-        case QW_SLSH:
-            return TAPPING_TERM + 100;
+        case QOU_SCLN:
+            return 250;
 
-        default:
-            return TAPPING_TERM;
-    }
-}
+        case QW_S:
+        case QOU_S:
+        case QW_L:
+        case QOU_L:
+            return 200;
 
-bool achordion_chord(uint16_t tap_hold_keycode,
-                     keyrecord_t* tap_hold_record,
-                     uint16_t other_keycode,
-                     keyrecord_t* other_record) {
-
-    switch (tap_hold_keycode) {
-        case LTHUMB0:
-        case RTHUMB0:
-        case LTHUMB1:
-        case RTHUMB1:
-        case LTHUMB2:
-        case RTHUMB2:
-            return true;
-    }
-    switch (other_keycode) {
-        case LTHUMB0:
-        case RTHUMB0:
-        case LTHUMB1:
-        case RTHUMB1:
-        case LTHUMB2:
-        case RTHUMB2:
-            return true;
+//        case LTHUMB0:
+//        case LTHUMB1:
+//            return 0;
     }
 
-    // Otherwise, follow the opposite hands rule.
-    return achordion_opposite_hands(tap_hold_record, other_record);
+    return TAPPING_TERM;
 }
 
-// short timeout because I still want to be able to do single handed chords and eager mods is a bit broken anyways
-uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
-    return LONG_TAPPING_TERM;
-}
-bool achordion_eager_mod(uint8_t mod) {
+bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
+//    switch (keycode) {
+//        case LTHUMB0:
+//        case LTHUMB1:
+//            return true;
+//    }
+
     return false;
 }
