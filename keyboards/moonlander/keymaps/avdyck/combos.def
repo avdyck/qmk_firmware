@@ -5,3 +5,6 @@
 //
 // COMB(comb_HASH, KC_HASH, SYM_U, SYM_I)
 // COMB(comb_GRAV, KC_GRV,  SYM_I, SYM_O)
+
+// COMB(comb_CIRC, KC_HASH, SYM_U, SYM_I)
+// COMB(comb_DLR,  KC_DLR,  SYM_I, SYM_O)

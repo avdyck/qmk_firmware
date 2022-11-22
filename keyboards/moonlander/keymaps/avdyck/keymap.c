@@ -7,7 +7,7 @@
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QWERTY] = LAYOUT_moonlander(
         _______,  KC_4,     KC_0,     KC_1,     KC_2,     KC_3,     _______,             TG(QOUPY),KC_7,     KC_6,     KC_5,     KC_9,     KC_8,     _______,
-        KC_DEL,   QW_Q,     QW_W,     QW_E,     QW_R,     QW_T,     C(KC_INS),           TG(MDIA), QW_Y,     QW_U,     QW_I,     QW_O,     QW_P,     KC_BSPC,
+        DELLL,    QW_Q,     QW_W,     QW_E,     QW_R,     QW_T,     C(KC_INS),           TG(MDIA), QW_Y,     QW_U,     QW_I,     QW_O,     QW_P,     BEKSPC,
         TABBB,    QW_A,     QW_S,     QW_D,     QW_F,     QW_G,     S(KC_INS),           KC_INS,   QW_H,     QW_J,     QW_K,     QW_L,     QW_SCLN,  ENTR,
         LSJIFT,   QW_Z,     QW_X,     QW_C,     QW_V,     QW_B,                                    QW_N,     QW_M,     QW_COMM,  QW_DOT,   QW_SLSH,  RSJIFT,
         _______,  _______,  LTHUMB4,  LTHUMB3,  LTHUMB2,  KC_PSCR,                                 TG(GMNG), RTHUMB2,  RTHUMB3,  RTHUMB4,  _______,  _______,
@@ -16,7 +16,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QOUPY] = LAYOUT_moonlander(
         _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  _______,  _______,  _______,  _______,  _______,  _______,
         _______,  QOU_Q,    QOU_W,    QOU_E,    QOU_R,    QOU_T,    _______,             _______,  QOU_Y,    QOU_U,    QOU_I,    QOU_O,    QOU_P,    _______,
-        _______,  QOU_A,    QOU_S,    QOU_D,    QOU_F,    QOU_G,    _______,             _______,  QOU_H,    QOU_J,    QOU_K,    QOU_L,    QOU_SCLN, _______,
+        QOU_TAB,  QOU_A,    QOU_S,    QOU_D,    QOU_F,    QOU_G,    _______,             _______,  QOU_H,    QOU_J,    QOU_K,    QOU_L,    QOU_SCLN, QOU_ENT,
         _______,  QOU_Z,    QOU_X,    QOU_C,    QOU_V,    QOU_B,                                   QOU_N,    QOU_M,    QOU_COMM, QOU_DOT,  QOU_SLSH, _______,
         _______,  _______,  _______,  _______,  _______,  _______,                                 _______,  _______,  _______,  _______,  _______,  _______,
                                                 _______,  _______,  _______,             _______,  _______,  _______
@@ -31,8 +31,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [NAV] = LAYOUT_moonlander(
         _______,  _______,  _______,  _______,  _______,  _______,  _______,             _______,  _______,  _______,  _______,  _______,  _______,  _______,
-        _______,  NV_Q,     NV_W,     NV_E,     NV_R,     NV_T,     _______,             _______,  KC_PGUP,  KC_HOME,  KC_UP,    KC_END,   _______,  _______,
-        _______,  NV_A,     NV_S,     NV_D,     NV_F,     NV_G,     _______,             _______,  KC_PGDN,  KC_LEFT,  KC_DOWN,  KC_RIGHT, _______,  _______,
+        _______,  NV_Q,     NV_W,     NV_E,     NV_R,     NV_T,     _______,             _______,  KC_PGUP,  KC_HOME,  KC_END,   KC_PGDN,  _______,  _______,
+        _______,  NV_A,     NV_S,     NV_D,     NV_F,     NV_G,     _______,             _______,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RIGHT, _______,  _______,
         _______,  NV_Z,     NV_X,     NV_C,     NV_V,     NV_B,                                    _______,  _______,  _______,  _______, _______,  _______,
         _______,  _______,  _______,  _______,  _______,  _______,                                 _______,  _______,  _______,  _______,  _______,  _______,
                                                 _______,  _______,  _______,             _______,  _______,  _______
@@ -137,6 +137,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 //    process_long_tap(keycode, record, &lthumb0_state);
     static key_state lthumb1_state = { .hold_code = LTHUMB1, .tap_code = KC_ESC };
     process_long_tap(keycode, record, &lthumb1_state);
+//    static key_state lthumb2_state = { .hold_code = LTHUMB2, .tap_code = KC_ESC };
+//    process_long_tap(keycode, record, &lthumb2_state);
+//    static key_state rthumb2_state = { .hold_code = RTHUMB2, .tap_code = KC_ESC };
+//    process_long_tap(keycode, record, &rthumb2_state);
 
     return true;
 }
