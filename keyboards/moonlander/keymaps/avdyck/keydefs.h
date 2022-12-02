@@ -124,7 +124,7 @@ enum LAYERS {
 #define QOU_S     ML2(KC_I)
 #define QOU_D     ML3(KC_A)
 #define QOU_F     ML4(KC_E)
-#define QOU_G         KC_X
+#define QOU_G         KC_COMM
 #define QOU_H         KC_G
 #define QOU_J     MR4(KC_T)
 #define QOU_K     MR3(KC_N)
@@ -133,7 +133,7 @@ enum LAYERS {
 #define QOU_ENT   KC_Q
 
 #define QOU_Z     KC_V
-#define QOU_X     KC_COMM
+#define QOU_X     KC_X
 #define QOU_C     KC_DOT
 #define QOU_V     KC_SLSH
 #define QOU_B     KC_SCLN
