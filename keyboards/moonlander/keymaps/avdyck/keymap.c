@@ -3,14 +3,15 @@
 #include "keydefs.h"
 #include "ledmap.h"
 #include "g/keymap_combo.h"
+#include "achordion.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QWERTY] = LAYOUT_moonlander(
-        _______,  KC_4,     KC_0,     KC_1,     KC_2,     KC_3,     _______,             TG(QOUPY),KC_7,     KC_6,     KC_5,     KC_9,     KC_8,     _______,
-        DELLL,    QW_Q,     QW_W,     QW_E,     QW_R,     QW_T,     C(KC_INS),           TG(MDIA), QW_Y,     QW_U,     QW_I,     QW_O,     QW_P,     BEKSPC,
-        TABBB,    QW_A,     QW_S,     QW_D,     QW_F,     QW_G,     S(KC_INS),           KC_INS,   QW_H,     QW_J,     QW_K,     QW_L,     QW_SCLN,  ENTR,
+        DELLL,    KC_4,     KC_0,     KC_1,     KC_2,     KC_3,     G(KC_X),             TG(QOUPY),KC_7,     KC_6,     KC_5,     KC_9,     KC_8,     _______,
+        TABBB,    QW_Q,     QW_W,     QW_E,     QW_R,     QW_T,     G(KC_C),             TG(MDIA), QW_Y,     QW_U,     QW_I,     QW_O,     QW_P,     BEKSPC,
+        CAPSS,    QW_A,     QW_S,     QW_D,     QW_F,     QW_G,     G(KC_V),             KC_INS,   QW_H,     QW_J,     QW_K,     QW_L,     QW_SCLN,  ENTR,
         LSJIFT,   QW_Z,     QW_X,     QW_C,     QW_V,     QW_B,                                    QW_N,     QW_M,     QW_COMM,  QW_DOT,   QW_SLSH,  RSJIFT,
-        _______,  _______,  LTHUMB4,  LTHUMB3,  LTHUMB2,  KC_PSCR,                                 TG(GMNG), RTHUMB2,  RTHUMB3,  RTHUMB4,  _______,  _______,
+        KC_LCTL,  _______,  LTHUMB4,  LTHUMB3,  LTHUMB2,  KC_PSCR,                                 TG(GMNG), RTHUMB2,  RTHUMB3,  RTHUMB4,  _______,  _______,
                                                 LTHUMB1,  LTHUMB0,  _______,             _______,  RTHUMB0,  RTHUMB1
     ),
     [QOUPY] = LAYOUT_moonlander(
@@ -69,36 +70,26 @@ void keyboard_post_init_user(void) {
     rgb_matrix_enable();
 }
 
-const key_override_t dot_key_override  = ko_make_basic(MOD_MASK_SHIFT, QW_DOT,  KC_AT);   // Shift . is @
-const key_override_t comm_key_override = ko_make_basic(MOD_MASK_SHIFT, QW_COMM, KC_UNDS); // Shift , is _
+const key_override_t dot_key_override       = ko_make_basic(MOD_MASK_SHIFT, QW_DOT,  KC_AT);   // Shift . is @
+const key_override_t comm_key_override      = ko_make_basic(MOD_MASK_SHIFT, QW_COMM, KC_UNDS); // Shift , is _
+const key_override_t ctrl_h_key_override    = ko_make_basic(MOD_RCTL, QW_H, KC_LEFT);
+const key_override_t ctrl_j_key_override    = ko_make_basic(MOD_RCTL, QW_J, KC_DOWN);
+const key_override_t ctrl_k_key_override    = ko_make_basic(MOD_RCTL, QW_K, KC_UP);
+const key_override_t ctrl_l_key_override    = ko_make_basic(MOD_RCTL, QW_L, KC_RIGHT);
+const key_override_t ctrl_m_key_override    = ko_make_basic(MOD_RCTL, QW_M, KC_HOME);
+const key_override_t ctrl_comm_key_override = ko_make_basic(MOD_RCTL, QW_COMM, KC_END);
 
 const key_override_t** key_overrides = (const key_override_t*[]){
     &dot_key_override,
     &comm_key_override,
+    &ctrl_h_key_override,
+    &ctrl_j_key_override,
+    &ctrl_k_key_override,
+    &ctrl_l_key_override,
+    &ctrl_m_key_override,
+    &ctrl_comm_key_override,
     NULL
 };
-
-uint16_t get_combo_term(uint16_t index, combo_t *combo) {
-    return COMBO_TERM;
-}
-
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case QW_A:
-        case QOU_A:
-        case QW_SCLN:
-        case QOU_SCLN:
-            return 250;
-
-        case QW_S:
-        case QOU_S:
-        case QW_L:
-        case QOU_L:
-            return 200;
-    }
-
-    return TAPPING_TERM;
-}
 
 bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
     return false;
@@ -133,8 +124,9 @@ static void process_long_tap(uint16_t keycode, keyrecord_t *record, key_state *s
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
-//    static key_state lthumb0_state = { .hold_code = LTHUMB0, .tap_code = KC_TAB };
-//    process_long_tap(keycode, record, &lthumb0_state);
+    if (!process_achordion(keycode, record)) { return false; }
+    static key_state caps_state = { .hold_code = CAPSS, .tap_code = KC_ESC };
+    process_long_tap(keycode, record, &caps_state);
     static key_state lthumb1_state = { .hold_code = LTHUMB1, .tap_code = KC_ESC };
     process_long_tap(keycode, record, &lthumb1_state);
 //    static key_state lthumb2_state = { .hold_code = LTHUMB2, .tap_code = KC_ESC };
@@ -144,3 +136,62 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
     return true;
 }
+
+void matrix_scan_user(void) {
+  achordion_task();
+}
+
+bool achordion_chord(uint16_t tap_hold_keycode,
+                     keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode,
+                     keyrecord_t* other_record) {
+    // Exceptionally consider the following chords as holds
+    switch (other_keycode) {
+        case TABBB:
+        case CAPSS:
+        case KC_ENTER:
+        case KC_BSPC:
+        case LTHUMB1:
+        case LTHUMB2:
+        case RTHUMB1:
+        case RTHUMB2:
+            return true;
+    }
+
+    // Otherwise, follow the opposite hands rule.
+    return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
+uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+  return 500;
+}
+
+uint16_t get_combo_term(uint16_t index, combo_t *combo) {
+    return COMBO_TERM;
+//    switch (combo->keys[0]) {
+//        case LTHUMB1:
+//        case RTHUMB1:
+//            return COMBO_TERM;
+//        default:
+//            // non-thumb combos can be faster cause of typos
+//            return 30;
+//    }
+}
+
+//uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+//    switch (keycode) {
+//        case QW_A:
+//        case QOU_A:
+//        case QW_SCLN:
+//        case QOU_SCLN:
+//            return 250;
+//
+//        case QW_S:
+//        case QOU_S:
+//        case QW_L:
+//        case QOU_L:
+//            return 200;
+//    }
+//
+//    return TAPPING_TERM;
+//}

@@ -13,19 +13,20 @@ enum LAYERS {
 };
 
 #define LTHUMB0      KC_TAB
-#define LTHUMB1      KC_LSFT
+#define LTHUMB1      KC_RSFT
 #define LTHUMB2      MO(SYM)
 #define LTHUMB3      KC_NO
 #define LTHUMB4      MO(MDIA)
 
 #define RTHUMB0      KC_ENTER
 #define RTHUMB1      KC_SPACE
-#define RTHUMB2      MO(NAV)
+#define RTHUMB2      MO(FUN)
 #define RTHUMB3      KC_NO
 #define RTHUMB4      TG(MDIA)
 
 #define DELLL        KC_DEL
 #define TABBB        KC_TAB
+#define CAPSS        KC_RCTL
 #define LSJIFT       KC_LSFT
 
 #define BEKSPC       KC_BSPC
@@ -45,14 +46,14 @@ enum LAYERS {
 #define MAC_STOP     DYN_REC_STOP
 #define MAC_PLAY1    DYN_MACRO_PLAY1
 
-#define ML1(x)  MT(MOD_LGUI, (x))
-#define MR1(x)  MT(MOD_RGUI, (x))
+#define ML1(x)  (x)
+#define MR1(x)  (x)
 #define ML2(x)  MT(MOD_LALT, (x))
 #define MR2(x)  MT(MOD_RALT, (x))
 #define ML3(x)  MT(MOD_LSFT, (x))
 #define MR3(x)  MT(MOD_RSFT, (x))
-#define MR4(x)  MT(MOD_LCTL, (x))
-#define ML4(x)  MT(MOD_RCTL, (x))
+#define MR4(x)  MT(MOD_LGUI, (x))
+#define ML4(x)  MT(MOD_RGUI, (x))
 
 // qwerty bindings
 #define QW_Q     KC_Q
@@ -108,40 +109,40 @@ enum LAYERS {
 #define NV_B     KC_F12
 
 // qoupy bindings
-#define QOU_Q     KC_Z
-#define QOU_W     KC_Y
-#define QOU_E     KC_O
-#define QOU_R     KC_U
-#define QOU_T     KC_QUOT
-#define QOU_Y     KC_P
-#define QOU_U     KC_K
-#define QOU_I     KC_H
-#define QOU_O     KC_L
-#define QOU_P     KC_J
+#define QOU_Q     KC_J
+#define QOU_W     KC_L
+#define QOU_E     KC_H
+#define QOU_R     KC_K
+#define QOU_T     KC_R
+#define QOU_Y     KC_Q
+#define QOU_U     KC_F
+#define QOU_I     KC_U
+#define QOU_O     KC_O
+#define QOU_P     KC_Y
 
-#define QOU_TAB   KC_TRNS
-#define QOU_A     ML1(KC_C)
-#define QOU_S     ML2(KC_I)
-#define QOU_D     ML3(KC_A)
-#define QOU_F     ML4(KC_E)
-#define QOU_G         KC_COMM
-#define QOU_H         KC_G
-#define QOU_J     MR4(KC_T)
-#define QOU_K     MR3(KC_N)
-#define QOU_L     MR2(KC_R)
-#define QOU_SCLN  MR1(KC_S)
-#define QOU_ENT   KC_Q
+#define QOU_TAB       KC_TRNS
+#define QOU_A     ML1(   KC_C)
+#define QOU_S     ML2(   KC_R)
+#define QOU_D     ML3(   KC_N)
+#define QOU_F     ML4(   KC_T)
+#define QOU_G            KC_M
+#define QOU_H            KC_B
+#define QOU_J     ML4(   KC_S)
+#define QOU_K     ML3(   KC_E)
+#define QOU_L     ML2(   KC_A)
+#define QOU_SCLN  ML1(   KC_I)
+#define QOU_ENT       KC_TRNS
 
-#define QOU_Z     KC_V
+#define QOU_Z     KC_W
 #define QOU_X     KC_X
-#define QOU_C     KC_DOT
-#define QOU_V     KC_SLSH
-#define QOU_B     KC_SCLN
-#define QOU_N     KC_B
-#define QOU_M     KC_D
-#define QOU_COMM  KC_F
-#define QOU_DOT   KC_M
-#define QOU_SLSH  KC_W
+#define QOU_C     KC_P
+#define QOU_V     KC_D
+#define QOU_B     KC_V
+#define QOU_N     KC_SCLN
+#define QOU_M     KC_G
+#define QOU_COMM  KC_COMM
+#define QOU_DOT   KC_DOT
+#define QOU_SLSH  KC_SLSH
 
 // symbols
 #define SYM_Q     KC_NO
